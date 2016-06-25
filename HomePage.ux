@@ -1,0 +1,16 @@
+<Page ux:Class="HomePage">
+	<Router ux:Dependency="router" />
+
+	<JavaScript>
+		module.exports = {
+			start: function(){
+				router.push("main");
+			}
+		};
+	</JavaScript>
+
+	<StackPanel Alignment="Center">
+		<Text>Home Page</Text>
+		<Button Text="Start" Clicked="{start}" />
+	</StackPanel>
+</Page>

@@ -1,0 +1,10 @@
+<App>
+	<Router ux:Name="router"/>
+
+	<Navigator DefaultTemplate="home">
+		<HomePage ux:Template="home" router="router" />
+		<MainPage ux:Template="main" router="router" />
+		<DetailsPage ux:Template="details" router="router" />
+		<NavDrawer ux:Template="NavDrawer" router="router" />
+	</Navigator>
+</App>
