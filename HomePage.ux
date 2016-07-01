@@ -2,15 +2,42 @@
 	<Router ux:Dependency="router" />
 
 	<JavaScript>
+		var Observable = require('FuseJS/Observable');
+		var data = Observable();
+		var sampleUrl = 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://www.digg.com/rss/index.xml';
+		var myUrl = 'https://ntf1.firebaseio.com/v1/AdventurousCities.json';
+
+		fetch(myUrl)
+		.then(function(response){ return response.json(); })
+		.then(function(responseObject) { 
+			var responseAsArray = [];
+			for(i in responseObject)
+			{
+				//console.log(JSON.stringify(i));
+				responseAsArray.push(responseObject[i]);
+			}
+			data.value = {t: responseAsArray};
+			console.log(responseAsArray);
+		});
+
 		module.exports = {
+			dataSource: data,
 			start: function(){
 				router.push("main");
 			}
 		};
 	</JavaScript>
 
-	<StackPanel Alignment="Center">
-		<Text>Home Page</Text>
-		<Button Text="Start" Clicked="{start}" />
-	</StackPanel>
+	<Text ux:Class="Article1" Margin="10,0,10,0" TextWrapping="Wrap" FontSize="13" />
+
+	<ScrollView>
+		<StackPanel Alignment="Center">
+			<Text>Home Page</Text>
+			<Button Text="Start" Clicked="{start}" />
+			<Each Items="{dataSource.t}">
+				<Article1 Value="{name}" />
+				<Image Url="{imgName}" />
+			</Each>
+		</StackPanel>
+	</ScrollView>
 </Page>
