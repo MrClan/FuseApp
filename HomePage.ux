@@ -17,13 +17,16 @@
 				responseAsArray.push(responseObject[i]);
 			}
 			data.value = {t: responseAsArray};
-			console.log(responseAsArray);
 		});
 
 		module.exports = {
 			dataSource: data,
 			start: function(){
 				router.push("main");
+			},
+			back: function(){
+				console.log(JSON.stringify(router));
+				router.goBack();
 			}
 		};
 	</JavaScript>
@@ -34,9 +37,10 @@
 		<StackPanel Alignment="Center">
 			<Text>Home Page</Text>
 			<Button Text="Start" Clicked="{start}" />
+			<Button Text="Back" Clicked="{back}" />
 			<Each Items="{dataSource.t}">
-				<Article1 Value="{name}" />
-				<Image Url="{imgName}" />
+				<Header Value="{name}" TextAlignment="Center"/>
+				<Image Url="{imgName}" StretchDirection="DownOnly"/>
 			</Each>
 		</StackPanel>
 	</ScrollView>

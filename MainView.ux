@@ -1,7 +1,8 @@
 <App>
 	<Router ux:Name="router"/>
 
-	<Navigator DefaultTemplate="home">
+	<Navigator DefaultTemplate="welcome">
+		<WelcomePage ux:Template="welcome" router="router" />
 		<HomePage ux:Template="home" router="router" />
 		<MainPage ux:Template="main" router="router" />
 		<DetailsPage ux:Template="details" router="router" />
