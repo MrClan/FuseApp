@@ -14,13 +14,13 @@
       <Text Dock="Right" Alignment="VerticalCenter">3rd July, 2016</Text>
     </DockPanel>
     <DockPanel Margin="0,12">
-      <StackPanel Dock="Top" Orientation="Horizontal">
+      <StackPanel Dock="Top" Alignment="Left" Orientation="Horizontal" HitTestMode="LocalBoundsAndChildren">
         <Text Padding="0, 4" Value="{Property this.Likes}">
-        <Clicked>
-					<Callback Handler="{incrementLikes}" />
-				</Clicked>
         </Text>
         <Text Padding="0, 4" Value=" likes"/>
+        <Clicked>
+          <Callback Handler="{incrementLikes}" />
+        </Clicked>
       </StackPanel>
       <Text Dock="Bottom" TextWrapping="Wrap" Padding="0,12" Color="#2c3e50" Value="{text}" />
     </DockPanel>
