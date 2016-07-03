@@ -1,3 +1,3 @@
-# Journey Nepal
+Fuse App
 
-Shows the usage of Components and Styles
+Creating samples for future quick reference
