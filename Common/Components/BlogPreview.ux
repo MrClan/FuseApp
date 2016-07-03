@@ -15,11 +15,19 @@
     </DockPanel>
     <DockPanel Margin="0,12">
       <StackPanel Dock="Top" Orientation="Horizontal">
-        <Text Padding="0, 4" Value="{Property this.Likes}"></Text>
+        <Text Padding="0, 4" Value="{Property this.Likes}">
+        <Clicked>
+					<Callback Handler="{incrementLikes}" />
+				</Clicked>
+        </Text>
         <Text Padding="0, 4" Value=" likes"/>
       </StackPanel>
       <Text Dock="Bottom" TextWrapping="Wrap" Padding="0,12" Color="#2c3e50" Value="{text}" />
     </DockPanel>
   </StackPanel>
   <HorizontalBar />
+  <Clicked>
+		<Change this.Opacity="0" Duration=".1" />
+		<Change this.Opacity="1" Duration=".2" />
+	</Clicked>
 </StackPanel>

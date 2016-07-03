@@ -29,14 +29,14 @@
             debug_log('else');
             args.data.likes.value = args.data.likes.value + 1;
           }
+        },
+        incrementLikes: function(){
+          console.log('likes clicked');
         }
       };
     </JavaScript>
     <Each Items="{data.quotes}">
       <BlogPreview Likes="{likes}">
-        <Clicked>
-          <Callback Handler="{incrLikes}" />
-        </Clicked>
       </BlogPreview>
     </Each>
     <Text Color="#88f" Alignment="Center">Hello World!
