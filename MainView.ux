@@ -1,11 +1,54 @@
 <App>
-	<Router ux:Name="router"/>
-
-	<Navigator DefaultTemplate="welcome">
-		<WelcomePage ux:Template="welcome" router="router" />
-		<HomePage ux:Template="home" router="router" />
-		<MainPage ux:Template="main" router="router" />
-		<DetailsPage ux:Template="details" router="router" />
-		<NavDrawer ux:Template="NavDrawer" router="router" />
-	</Navigator>
+<ScrollView>
+  <StackPanel>
+    <JavaScript>
+      var Observable = require('FuseJS/Observable');
+      var data = Observable();//{};
+      var quotes = {};
+      fetch('https://api.myjson.com/bins/2m70k')
+      .then(function(response) { return response.json(); })
+      .then(function(responseObject) {
+        data.value = responseObject;
+      });
+      module.exports = {
+        doSomething: function(){
+          console.log('clicked1');
+        },
+        data:data,
+        items: [],
+        log: function(){
+          console.log('clicked');
+        },
+        incrLikes: function(args){
+          debug_log(args.data.likes);
+          if(!args.data.likes){
+            args.data.likes = Observable();
+            args.data.likes.value = 0;
+          }
+          else {
+            debug_log('else');
+            args.data.likes.value = args.data.likes.value + 1;
+          }
+        }
+      };
+    </JavaScript>
+    <Each Items="{data.quotes}">
+      <BlogPreview Likes="{likes}">
+        <Clicked>
+          <Callback Handler="{incrLikes}" />
+        </Clicked>
+      </BlogPreview>
+    </Each>
+    <Text Color="#88f" Alignment="Center">Hello World!
+      <DropShadow Size="16" Color="#000" Angle="120" Spread="0.15"></DropShadow>
+    </Text>
+    <Panel ux:Class="MyButton">
+      <string ux:Property="Text"/>
+      <Text Value="{Property this.Text}" />
+      <Rectangle CornerRadius="5" Color="#000" Margin="12" Padding="12" Width="45" Height="54"/>
+    </Panel>
+  <MyButton Text="Submit" Clicked="{doSomething}" />
+  <Header Value="Header Text applied through the style" />
+  </StackPanel>
+</ScrollView>
 </App>

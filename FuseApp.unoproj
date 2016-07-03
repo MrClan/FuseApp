@@ -5,7 +5,6 @@
     "FuseJS"
   ],
   "Includes": [
-    "*",
-    "Utils.js"
+    "*"
   ]
 }
