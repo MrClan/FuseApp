@@ -3,13 +3,33 @@
   <StackPanel>
     <JavaScript>
       var Observable = require('FuseJS/Observable');
-      var data = Observable();//{};
-      var quotes = {};
+
       fetch('https://api.myjson.com/bins/2m70k')
       .then(function(response) { return response.json(); })
       .then(function(responseObject) {
-        data.value = responseObject;
+        // call a function that fills the list
+        populateList(responseObject);
       });
+
+      var data = Observable();
+
+      function populateList(source) {
+        //console.log(JSON.stringify(source));
+          // for each item in source data...
+        for (var i in source.quotes) {
+          // create a new temporary object...
+          // we will need an ID to find items by later, so we add it too!
+          var tmp = {
+            'id':data.length,
+            'text':source.quotes[i].text,
+            'by': source.quotes[i].by,
+            'likes':Observable(0)
+          };
+          // and then add it to our data Observable
+          data.add(tmp);
+        }
+      };
+
       module.exports = {
         doSomething: function(){
           console.log('clicked1');
@@ -20,24 +40,20 @@
           console.log('clicked');
         },
         incrLikes: function(args){
-          debug_log(args.data.likes);
-          if(!args.data.likes){
-            args.data.likes = Observable();
-            args.data.likes.value = 0;
-          }
-          else {
-            debug_log('else');
-            args.data.likes.value = args.data.likes.value + 1;
-          }
+          //debug_log(JSON.stringify(args));
+          data.forEach(function(item) {
+            if (item.id == args.data.id) {
+              args.data.likes.value = args.data.likes.value + 1; // refer to .value, because it is an Observable!
+            }
+          });
         },
         incrementLikes: function(){
           console.log('likes clicked');
         }
       };
     </JavaScript>
-    <Each Items="{data.quotes}">
-      <BlogPreview Likes="{likes}">
-      </BlogPreview>
+    <Each Items="{data}">
+      <BlogPreview Likes="{likes}" />
     </Each>
     <Text Color="#88f" Alignment="Center">Hello World!
       <DropShadow Size="16" Color="#000" Angle="120" Spread="0.15"></DropShadow>

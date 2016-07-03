@@ -19,7 +19,7 @@
         </Text>
         <Text Padding="0, 4" Value=" likes"/>
         <Clicked>
-          <Callback Handler="{incrementLikes}" />
+          <Callback Handler="{incrLikes}" />
         </Clicked>
       </StackPanel>
       <Text Dock="Bottom" TextWrapping="Wrap" Padding="0,12" Color="#2c3e50" Value="{text}" />
