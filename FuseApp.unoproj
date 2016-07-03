@@ -6,6 +6,6 @@
   ],
   "Includes": [
     "*",
-    "Modules/BlogModule.js:Bundle"
+    "Modules/*.js:Bundle"
   ]
 }
