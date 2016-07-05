@@ -8,12 +8,4 @@
   <Panel ux:Class="HorizontalBar" Margin="4" Alignment="VerticalCenter">
     <Rectangle Fill="#ccc" Height="1" />
   </Panel>
-
-  <Panel ux:Class="ProgressBar" Margin="4" Alignment="VerticalCenter">
-    <Rectangle Fill="#8FE0DC" Height="4" />
-  </Panel>
-
-  <Text ux:Class="LargeValueText" Color="#CB6466" FontSize="24" />
-  <Text ux:Class="SmallValueText" Color="#CB6466" FontSize="15" />
-  <Text ux:Class="LabelText" Color="#8FE0DC" FontSize="24" />
 </Panel>
