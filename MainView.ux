@@ -2,40 +2,43 @@
   <DockPanel>
     <iOS.StatusBarConfig Style="Light" />
     <StatusBarBackground Dock="Top"/>
-    <BottomBarBackground Dock="Bottom"/>
-  <ScrollView>
-  <DockPanel Background="#282F3B">
-    <StackPanel Orientation="Horizontal" ItemSpacing="24" Margin="12">
-      <Rectangle Color="Blue" Width="100" Height="100" CornerRadius="12" >
-        <ImageFill File="Assets/n.jpg" StretchMode="UniformToFill"/>
-      </Rectangle>
-      <StackPanel ItemSpacing="24">
-        <StackPanel>
-          <DockPanel>
-            <StackPanel Dock="Left">
-              <SmallValueText Value="Updated:"/>
-              <SmallValueText Value="Today 2:01 PM"/>
-            </StackPanel>
-            <Panel Dock="Right">
-              <LargeValueText>50%</LargeValueText>
-            </Panel>
-          </DockPanel>
-          <ProgressBar />
-        </StackPanel>
-        <DockPanel>
-          <Panel Dock="Left" Padding="4" Margin="0,0,4,0" Background="#58606E">
-            <Circle Width="24" Padding="12" Color="#8FE0DC" Height="24" Alignment="VerticalCenter" Margin="4">
-              <ImageFill File="Assets/Icons/user.png" />
-            </Circle>
-          </Panel>
-          <LabelText Background="#58606E" Dock="Right" Padding="0" Alignment="VerticalCenter" Margin="4">USERNAME</LabelText>
-        </DockPanel>
-      </StackPanel>
-    </StackPanel>
 
-    <StackPanel ItemSpacing="12" Background="#58606E" Dock="Bottom">
-      <ScrollView>
-        <StackPanel>
+    <DockPanel Background="#282F3B">
+      <StackPanel Orientation="Horizontal" ItemSpacing="24" Margin="12">
+
+        <Rectangle Color="Blue" Width="100" Height="100" CornerRadius="12" >
+          <ImageFill File="Assets/n.jpg" StretchMode="UniformToFill"/>
+        </Rectangle>
+
+        <StackPanel ItemSpacing="24">
+          <StackPanel>
+            <DockPanel>
+              <StackPanel Dock="Left">
+                <SmallValueText Value="Updated:"/>
+                <SmallValueText Value="Today 2:01 PM"/>
+              </StackPanel>
+              <Panel Dock="Right">
+                <LargeValueText>50%</LargeValueText>
+              </Panel>
+            </DockPanel>
+            <ProgressBar />
+          </StackPanel>
+
+          <DockPanel>
+            <Panel Dock="Left" Padding="4" Margin="0,0,4,0" Background="#58606E">
+              <Circle Width="24" Padding="12" Color="#8FE0DC" Height="24" Alignment="VerticalCenter" Margin="4">
+                <ImageFill File="Assets/Icons/user.png" />
+              </Circle>
+            </Panel>
+            <LabelText Background="#58606E" Dock="Right" Padding="0" Alignment="VerticalCenter" Margin="4">USERNAME</LabelText>
+          </DockPanel>
+        </StackPanel>
+
+      </StackPanel>
+
+      <StackPanel ItemSpacing="12" Background="#58606E" Dock="Bottom">
+        <ScrollView>
+          <StackPanel>
             <ProfileRow Label="PROFESSION" FieldValue="WESTERNHELD"/>
             <ProfileRow Label="BIRTHDAY" FieldValue="05.26.1907" />
             <ProfileRow Label="EMAIL" FieldValue="JOHN@WESTERNHELD.COM" />
@@ -43,23 +46,29 @@
             <ProfileRow Label="SHOW LOCATION" FieldValue="NO" />
             <ProfileRow Label="VIBRATE" FieldValue="YES" />
             <ProfileRow Label="FACEBOOK LINKED" FieldValue="NO" />
-        </StackPanel>
-      </ScrollView>
-    </StackPanel>
-    <Grid ColumnData="1*,1*,1*" Height="54" Dock="Bottom">
-            <Image ux:Class="Icon" Margin="10" />
-            <Panel>
-                <Icon ux:Name="tabBarImage1" File="Assets/Icons/chat.png" />
-            </Panel>
-            <Panel>
-                <Icon ux:Name="tabBarImage2" File="Assets/Icons/friends.png" />
-            </Panel>
-            <Panel>
-                <Icon ux:Name="tabBarImage3" File="Assets/Icons/settings.png" />
-            </Panel>
-    </Grid>
+          </StackPanel>
+        </ScrollView>
+      </StackPanel>
+
+      <Grid Columns="1*,1*,1*" Height="54" Dock="Bottom">
+        <Image ux:Class="Icon" Margin="10" />
+
+        <Panel>
+          <Icon ux:Name="tabBarImage1" File="Assets/Icons/chat.png" />
+        </Panel>
+
+        <Panel>
+          <Icon ux:Name="tabBarImage2" File="Assets/Icons/friends.png" />
+        </Panel>
+
+        <Panel>
+          <Icon ux:Name="tabBarImage3" File="Assets/Icons/settings.png" />
+        </Panel>
+      </Grid>
+
+    </DockPanel>
+
+    <BottomBarBackground Dock="Bottom"/>
 
   </DockPanel>
-</ScrollView>
-</DockPanel>
 </App>
