@@ -1,9 +1,6 @@
 <StackPanel ux:Class="BlogPreview">
   <string ux:Property="Likes" />
-  <StackPanel Margin="4,12,4,24" Padding="12" Background="#c0392b" ux:Name="sp1">
-    <WhilePressed>
-        <Cycle Target="sp1.Opacity" Low="0.5" High="1" Frequency="0.5"/>
-    </WhilePressed>
+  <StackPanel Margin="4,12,4,24" Padding="12" Background="#c0392b">
     <Image Layer="Background" File="../../Assets/bg.jpg" StretchMode="PointPrecise" />
     <DropShadow Angle="120" Distance="4" Size="12"  Spread="0.1" />
     <DockPanel Margin="0,12">
@@ -14,20 +11,12 @@
       <Text Dock="Right" Alignment="VerticalCenter">3rd July, 2016</Text>
     </DockPanel>
     <DockPanel Margin="0,12">
-      <StackPanel Dock="Top" Alignment="Left" Orientation="Horizontal" HitTestMode="LocalBoundsAndChildren">
-        <Text Padding="0, 4" Value="{Property this.Likes}">
-        </Text>
+      <StackPanel Dock="Top" Orientation="Horizontal">
+        <Text Padding="0, 4" Value="{Property this.Likes}"></Text>
         <Text Padding="0, 4" Value=" likes"/>
-        <Clicked>
-          <Callback Handler="{incrLikes}" />
-        </Clicked>
       </StackPanel>
       <Text Dock="Bottom" TextWrapping="Wrap" Padding="0,12" Color="#2c3e50" Value="{text}" />
     </DockPanel>
   </StackPanel>
   <HorizontalBar />
-  <Clicked>
-		<Change this.Opacity="0" Duration=".1" />
-		<Change this.Opacity="1" Duration=".2" />
-	</Clicked>
 </StackPanel>
