@@ -16,7 +16,13 @@
 
       <DockPanel Dock="Fill">
         <Panel Dock="Top">
-          <StackPanel Orientation="Horizontal" ItemSpacing="24" Margin="12">
+          <Grid Columns="auto,1*">
+            <Panel Width="110" Height="110" Background="#f00">
+            </Panel>
+            <Panel Background="#00f">
+            </Panel>
+          </Grid>
+         <!--  <StackPanel Orientation="Horizontal" ItemSpacing="24" Margin="12">
 
             <Rectangle Color="Blue" Width="100" Height="100" CornerRadius="12" >
               <ImageFill File="Assets/n.jpg" StretchMode="UniformToFill"/>
@@ -46,7 +52,7 @@
               </DockPanel>
             </StackPanel>
 
-          </StackPanel>
+          </StackPanel> -->
         </Panel>
         <Panel Dock="Fill">
           <ScrollView>
