@@ -4,9 +4,16 @@
     <StatusBarBackground Dock="Top"/>
 
     <DockPanel Dock="Fill">
-      <DockPanel Dock="Top" Height="50" Background="#abc" />
+      <Panel Dock="Top" Height="50" Background="#abc" />
       <DockPanel Dock="Fill" Background="#acb" />
-      <DockPanel Dock="Bottom" Height="50" Background="#bac" />
+
+      <Panel Dock="Bottom" Height="50">
+        <Grid Columns="1*,1*,1*" Dock="Bottom">
+          <Panel Background="#f00" />
+          <Panel Background="#0f0" />
+          <Panel Background="#00f" />
+        </Grid>
+      </Panel>
     </DockPanel>
 
     <BottomBarBackground Dock="Bottom"/>
