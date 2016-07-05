@@ -5,7 +5,14 @@
 
     <DockPanel Dock="Fill">
       <Panel Dock="Top" Height="50" Background="#abc" />
-      <DockPanel Dock="Fill" Background="#acb" />
+      
+      <DockPanel Dock="Fill">
+        <Panel Height="100" Dock="Top" Background="#acb"></Panel>
+        <Panel Dock="Fill">
+          <ScrollView>
+          </ScrollView>
+        </Panel>
+      </DockPanel>
 
       <Panel Dock="Bottom" Height="50">
         <Grid Columns="1*,1*,1*" Dock="Bottom">
