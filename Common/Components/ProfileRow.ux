@@ -5,5 +5,5 @@
           <Image File="../../Assets/Icons/user.png"/>
         </Rectangle>
         <LabelText Value="{Property Label}"/>
-        <SmallValueText TextAlignment="Left" Alignment="VerticalCenter" Value="{Property FieldValue}" />
+        <SmallValueText TextAlignment="Right" Alignment="Right" Value="{Property FieldValue}" />
 </StackPanel>
