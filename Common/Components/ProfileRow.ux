@@ -1,9 +1,17 @@
-<StackPanel ux:Class="ProfileRow" Orientation="Horizontal" Background="#282F3B" Margin="24,12" Padding="12">
-		<string ux:Property="Label" />
-		<string ux:Property="FieldValue" />
-        <Rectangle Height="24" Margin="0,0,4,0">
-          <Image File="../../Assets/Icons/user.png"/>
-        </Rectangle>
-        <LabelText Value="{Property Label}"/>
-        <SmallValueText TextAlignment="Right" Alignment="Right" Value="{Property FieldValue}" />
-</StackPanel>
+<Panel ux:Class="ProfileRow" Background="#282F3B" Margin="24,12" Padding="12">
+	<string ux:Property="Label" />
+	<string ux:Property="FieldValue" />
+
+	<Grid Columns="auto,auto,1*">
+		<Panel>
+			<Image Width="30" Height="30" File="../../Assets/Icons/user.png"/>
+		</Panel>
+		<Panel>
+			<LabelText Value="{Property Label}"/>
+		</Panel>
+		<Panel>
+			<SmallValueText TextAlignment="Right" Alignment="Right" Value="{Property FieldValue}" />
+		</Panel>
+	</Grid>
+
+</Panel>
