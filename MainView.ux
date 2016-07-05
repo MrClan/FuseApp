@@ -17,9 +17,12 @@
       <DockPanel Dock="Fill">
         <Panel Dock="Top">
           <Grid Columns="auto,1*">
-            <Panel Width="110" Height="110" Background="#f00">
+            <Panel Width="110" Height="110">
+              <Rectangle Color="Blue" Margin="10" CornerRadius="12" >
+                <ImageFill File="Assets/n.jpg" StretchMode="UniformToFill"/>
+              </Rectangle>
             </Panel>
-            <Panel Background="#00f">
+            <Panel>
             </Panel>
           </Grid>
          <!--  <StackPanel Orientation="Horizontal" ItemSpacing="24" Margin="12">
