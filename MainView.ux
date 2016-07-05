@@ -9,9 +9,15 @@
 
       <Panel Dock="Bottom" Height="50">
         <Grid Columns="1*,1*,1*" Dock="Bottom">
-          <Panel Background="#f00" />
-          <Panel Background="#0f0" />
-          <Panel Background="#00f" />
+          <Panel>
+            <Image File="Assets/Icons/chat.png" Margin="10" Alignment="Center" />
+          </Panel>
+          <Panel>
+            <Image File="Assets/Icons/friends.png" Margin="10" Alignment="Center" />
+          </Panel>
+          <Panel>
+            <Image File="Assets/Icons/settings.png" Margin="10" Alignment="Center" />
+          </Panel>
         </Grid>
       </Panel>
     </DockPanel>
