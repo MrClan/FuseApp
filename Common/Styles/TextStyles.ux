@@ -13,7 +13,19 @@
     <Rectangle Fill="#8FE0DC" Height="4" />
   </Panel>
 
-  <Text ux:Class="LargeValueText" Color="#CB6466" FontSize="24" />
-  <Text ux:Class="SmallValueText" Color="#CB6466" FontSize="15" />
-  <Text ux:Class="LabelText" Color="#8FE0DC" FontSize="24" />
+  <Text ux:Class="LargeValueText" Color="#CB6466" FontSize="24" >
+		<Font File="../../assets/fonts/Roboto-Bold.ttf" />
+	</Text>
+  <Text ux:Class="SmallValueText" Color="#CB6466" FontSize="12" >
+		<Font File="../../assets/fonts/Lato-Regular.ttf" />
+	</Text>
+  <Text ux:Class="TinyText" Color="#8FE0DC" FontSize="9" >
+		<Font File="../../assets/fonts/Lato-Regular.ttf" />
+	</Text>
+  <Text ux:Class="LabelText" Color="#8FE0DC" FontSize="15" >
+		<Font File="../../assets/fonts/AlegreyaSans-Bold.otf" />
+	</Text>
+  <Text ux:Class="Name" FontSize="15">
+		<Font File="../../assets/fonts/Roboto-Bold.ttf" />
+	</Text>
 </Panel>

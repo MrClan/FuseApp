@@ -1,17 +1,20 @@
-<Panel ux:Class="ProfileRow" Background="#282F3B" Margin="24,12" Padding="12">
+<Panel ux:Class="ProfileRow" Background="#282F3B" Margin="4">
 	<string ux:Property="Label" />
 	<string ux:Property="FieldValue" />
+	<FileSource ux:Property="IconFile" />
+	<bool ux:Property="IsSwitch" />
 
-	<Grid Columns="auto,auto,1*">
-		<Panel>
-			<Image Width="30" Height="30" File="../../Assets/Icons/user.png"/>
+	<Grid Columns="auto,auto,auto,1*">
+		<Panel Margin="4">
+			<Image Width="18" Margin="6" File="{Property IconFile}"/>
 		</Panel>
-		<Panel>
-			<LabelText Value="{Property Label}"/>
+		<Panel Background="#58606E" Width="1">
 		</Panel>
-		<Panel>
-			<SmallValueText TextAlignment="Right" Alignment="Right" Value="{Property FieldValue}" />
+		<Panel Margin="4">
+			<LabelText Value="{Property Label}" Alignment="VerticalCenter" Margin="12,0,0,4" />
+		</Panel>
+		<Panel Margin="4">
+			<SmallValueText TextAlignment="Right" Alignment="VerticalCenter" Value="{Property FieldValue}" TextWrapping="Wrap" Margin="4,0,12,0"/>
 		</Panel>
 	</Grid>
-
 </Panel>

@@ -4,11 +4,13 @@
     <StatusBarBackground Dock="Top"/>
 
     <DockPanel Dock="Fill">
-      <Panel Dock="Top" Height="50" Background="#eee">
+      <Panel Dock="Top" Height="39" Background="#fff">
         <Grid Columns="auto,1*,auto">
-          <Panel Width="50" />
+          <Panel Width="50">
+            <Image File="Assets/menu.png" Margin="9"/>
+          </Panel>
           <Panel>
-            <Text Alignment="Center" Value="PROFILE" FontSize="18" Color="#282F3B" />
+            <Name Alignment="Center" Value="PROFILE" FontSize="18" Color="#282F3B" />
           </Panel>
           <Panel Width="50" />
         </Grid>
@@ -19,8 +21,11 @@
           <Grid Columns="auto,1*">
 
             <Panel Width="110" Height="110">
-              <Rectangle Color="Blue" Margin="15" CornerRadius="5" >
+              <Rectangle Color="Blue" Margin="6" CornerRadius="5" Layer="Background">
                 <ImageFill File="Assets/n.jpg" StretchMode="UniformToFill"/>
+              </Rectangle>
+              <Rectangle Color="#ccc" Width="21" Height="15" Margin="0,0,9,9" Opacity="0.75" Alignment="BottomRight">
+                <ImageFill File="Assets/camera.png" StretchMode="UniformToFill"/>
               </Rectangle>
             </Panel>
 
@@ -40,15 +45,17 @@
                 </DockPanel>
 
                 <Panel MinWidth="180" MaxWidth="400">
-                  <Grid Columns="auto,1*" >
-                    <Panel>
+                  <Grid Columns="auto,auto,1*" >
+                    <Panel Margin="0,0,2,0" Padding="2">
                         <Circle Width="24" Padding="12" Color="#8FE0DC" Height="24" Alignment="VerticalCenter" Margin="4">
-                          <ImageFill File="Assets/Icons/user.png" />
+                          <ImageFill File="Assets/Icons/user.png" StretchMode="UniformToFill"/>
                         </Circle>
+                    </Panel>
+                    <Panel Width="2" Background="#282F3B">
                     </Panel>
                     <LabelText Background="#58606E" Dock="Right" Padding="0" Alignment="VerticalCenter" Margin="4">USERNAME</LabelText>
                   </Grid>
-                  <Rectangle Fill="#58606E" CornerRadius="5" />
+                  <Rectangle Fill="#58606E" CornerRadius="5"/>
                 </Panel>
 
               </StackPanel>
@@ -58,14 +65,17 @@
 
         <Panel Dock="Fill">
           <ScrollView>
-            <StackPanel Background="#58606E" ItemSpacing="10">
-              <ProfileRow Label="PROFESSION" FieldValue="WESTERNHELD"/>
-              <ProfileRow Label="BIRTHDAY" FieldValue="05.26.1907" />
-              <ProfileRow Label="EMAIL" FieldValue="JOHN@WESTERNHELD.COM" />
-              <ProfileRow Label="NOTIFICATIONS" FieldValue="NO" />
-              <ProfileRow Label="SHOW LOCATION" FieldValue="NO" />
-              <ProfileRow Label="VIBRATE" FieldValue="YES" />
-              <ProfileRow Label="FACEBOOK LINKED" FieldValue="NO" />
+            <StackPanel Background="#58606E" ItemSpacing="4">
+              <ProfileRow Label="PROFESSION" FieldValue="WESTERNHELD" IconFile="Assets/job.png"/>
+              <ProfileRow Label="BIRTHDAY" FieldValue="05.26.1907" IconFile="Assets/birthday.png" />
+              <ProfileRow Label="EMAIL" FieldValue="JOHN@WESTERNHELD.COM" IconFile="Assets/email.png" />
+              <ProfileRow Label="NOTIFICATIONS" FieldValue="NO" IconFile="Assets/notification.png" />
+              <ProfileRow Label="SHOW LOCATION" FieldValue="NO" IconFile="Assets/location.png" />
+              <ProfileRow Label="VIBRATE" FieldValue="YES" IconFile="Assets/vibrate.png" />
+              <ProfileRow Label="FACEBOOK LINKED" FieldValue="NO" IconFile="Assets/facebook.png" />
+              <ProfileRow Label="USE LOCAL TIME" FieldValue="YES" IconFile="Assets/time.png" />
+              <ProfileRow Label="ACCEPT REQUESTS" FieldValue="NO" IconFile="Assets/friends.png" />
+              <ProfileRow Label="AUTO UPDATE" FieldValue="NO" IconFile="Assets/update.png" />
             </StackPanel>
           </ScrollView>
         </Panel>
@@ -73,15 +83,18 @@
 
       <Panel Dock="Bottom" Height="50">
         <Grid Columns="1*,1*,1*" Dock="Bottom">
-          <Panel>
-            <Image File="Assets/Icons/chat.png" Margin="10" Alignment="Center" />
-          </Panel>
-          <Panel>
-            <Image File="Assets/Icons/friends.png" Margin="10" Alignment="Center" />
-          </Panel>
-          <Panel>
-            <Image File="Assets/Icons/settings.png" Margin="10" Alignment="Center" />
-          </Panel>
+          <DockPanel>
+            <TinyText Alignment="Center" Margin="0,3,0,3" Dock="Bottom">Chat History</TinyText>
+            <Image File="Assets/Icons/chat.png" Margin="3" Alignment="Center" Dock="Fill"/>
+          </DockPanel>
+          <DockPanel>
+            <TinyText Alignment="Center" Margin="0,3,0,3" Dock="Bottom">Friends Online</TinyText>
+            <Image File="Assets/Icons/friends.png" Margin="3" Alignment="Center" Dock="Fill" />
+          </DockPanel>
+          <DockPanel>
+            <TinyText Alignment="Center" Margin="0,3,0,3" Dock="Bottom">Settings</TinyText>
+            <Image File="Assets/Icons/settings.png" Margin="3" Alignment="Center" Dock="Fill" />
+          </DockPanel>
         </Grid>
       </Panel>
     </DockPanel>
