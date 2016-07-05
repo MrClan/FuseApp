@@ -3,9 +3,13 @@
     <iOS.StatusBarConfig Style="Light" />
     <StatusBarBackground Dock="Top"/>
 
+    <DockPanel Dock="Fill">
+      <DockPanel Dock="Top" Height="50" Background="#abc" />
+      <DockPanel Dock="Fill" Background="#acb" />
+      <DockPanel Dock="Bottom" Height="50" Background="#bac" />
+    </DockPanel>
 
     <BottomBarBackground Dock="Bottom"/>
-
   </DockPanel>
 </App>
 
