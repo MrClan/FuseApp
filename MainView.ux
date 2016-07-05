@@ -19,27 +19,31 @@
           <Grid Columns="auto,1*">
 
             <Panel Width="110" Height="110">
-              <Rectangle Color="Blue" Margin="10" CornerRadius="12" >
+              <Rectangle Color="Blue" Margin="15" CornerRadius="5" >
                 <ImageFill File="Assets/n.jpg" StretchMode="UniformToFill"/>
               </Rectangle>
             </Panel>
 
-            <StackPanel>
+            <Panel Margin="0,15,15,15">
+              <StackPanel>
 
-              <DockPanel>
-                <StackPanel Dock="Left">
-                  <SmallValueText Value="Updated:"/>
-                  <SmallValueText Value="Today 2:01 PM"/>
-                </StackPanel>
-                <Panel Dock="Right">
-                  <LargeValueText Alignment="VerticalCenter">50%</LargeValueText>
+                <DockPanel MinWidth="180" MaxWidth="400">
+                  <ProgressBar Dock="Bottom" />
+                  <StackPanel Dock="Left" Margin="5">
+                    <SmallValueText Value="Updated:"/>
+                    <SmallValueText Value="Today 2:01 PM"/>
+                  </StackPanel>
+                  <Panel Dock="Right" Margin="5">
+                    <LargeValueText Alignment="VerticalCenter">50%</LargeValueText>
+                  </Panel>
+                  <Rectangle Fill="#58606E" CornerRadius="5" Layer="Background" />
+                </DockPanel>
+
+                <Panel>
                 </Panel>
-              </DockPanel>
 
-              <Panel>
-              </Panel>
-
-            </StackPanel>
+              </StackPanel>
+            </Panel>
           </Grid>
          <!--  <StackPanel Orientation="Horizontal" ItemSpacing="24" Margin="12">
 
