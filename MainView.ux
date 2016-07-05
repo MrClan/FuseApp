@@ -25,7 +25,7 @@
             </Panel>
 
             <Panel Margin="0,15,15,15">
-              <StackPanel>
+              <StackPanel ItemSpacing="10">
 
                 <DockPanel MinWidth="180" MaxWidth="400">
                   <ProgressBar Dock="Bottom" />
@@ -39,40 +39,23 @@
                   <Rectangle Fill="#58606E" CornerRadius="5" Layer="Background" />
                 </DockPanel>
 
-                <Panel>
+                <Panel MinWidth="180" MaxWidth="400">
+                  <Grid Columns="auto,1*" >
+                    <Panel>
+                        <Circle Width="24" Padding="12" Color="#8FE0DC" Height="24" Alignment="VerticalCenter" Margin="4">
+                          <ImageFill File="Assets/Icons/user.png" />
+                        </Circle>
+                    </Panel>
+                    <LabelText Background="#58606E" Dock="Right" Padding="0" Alignment="VerticalCenter" Margin="4">USERNAME</LabelText>
+                  </Grid>
+                  <Rectangle Fill="#58606E" CornerRadius="5" />
                 </Panel>
 
               </StackPanel>
             </Panel>
           </Grid>
-         <!--  <StackPanel Orientation="Horizontal" ItemSpacing="24" Margin="12">
-
-            <StackPanel ItemSpacing="24">
-              <StackPanel>
-                <DockPanel>
-                  <StackPanel Dock="Left">
-                    <SmallValueText Value="Updated:"/>
-                    <SmallValueText Value="Today 2:01 PM"/>
-                  </StackPanel>
-                  <Panel Dock="Right">
-                    <LargeValueText>50%</LargeValueText>
-                  </Panel>
-                </DockPanel>
-                <ProgressBar />
-              </StackPanel>
-
-              <DockPanel>
-                <Panel Dock="Left" Padding="4" Margin="0,0,4,0" Background="#58606E">
-                  <Circle Width="24" Padding="12" Color="#8FE0DC" Height="24" Alignment="VerticalCenter" Margin="4">
-                    <ImageFill File="Assets/Icons/user.png" />
-                  </Circle>
-                </Panel>
-                <LabelText Background="#58606E" Dock="Right" Padding="0" Alignment="VerticalCenter" Margin="4">USERNAME</LabelText>
-              </DockPanel>
-            </StackPanel>
-
-          </StackPanel> -->
         </Panel>
+
         <Panel Dock="Fill">
           <ScrollView>
             <StackPanel Background="#58606E" ItemSpacing="10">
