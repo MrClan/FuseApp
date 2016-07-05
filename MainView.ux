@@ -1,4 +1,15 @@
-<App>
+<App Background="#282F3B">
+  <DockPanel>
+    <iOS.StatusBarConfig Style="Light" />
+    <StatusBarBackground Dock="Top"/>
+
+
+    <BottomBarBackground Dock="Bottom"/>
+
+  </DockPanel>
+</App>
+
+<!-- <App>
   <DockPanel>
     <iOS.StatusBarConfig Style="Light" />
     <StatusBarBackground Dock="Top"/>
@@ -72,3 +83,4 @@
 
   </DockPanel>
 </App>
+ -->
