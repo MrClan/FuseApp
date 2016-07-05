@@ -5,6 +5,13 @@
 
     <DockPanel Dock="Fill">
       <Panel Dock="Top" Height="50" Background="#eee">
+        <Grid Columns="auto,1*,auto">
+          <Panel Width="50" />
+          <Panel>
+            <Text Alignment="Center" Value="PROFILE" FontSize="18" Color="#282F3B" />
+          </Panel>
+          <Panel Width="50" />
+        </Grid>
       </Panel>
 
       <DockPanel Dock="Fill">
