@@ -1,0 +1,21 @@
+<ToggleControl ux:Class="MySwitch" BoxSizing="FillAspect" Aspect="1" HitTestMode="LocalBounds" Width="54" Height="24">
+  <float4 ux:Property="AccentColor" />
+  <Rectangle Width="60" Height="24" Layer="Background" Fill="#444" Opacity="0.01" Offset="-12,0"/>
+  <WrapPanel Orientation="Horizontal" Alignment="VerticalCenter" Width="54" Height="24">
+    <Panel>
+      <Circle Width="24" Height="24">
+        <Stroke Color="{Property this.AccentColor}" Width="4"/>
+      </Circle>
+      <Circle Width="12" Height="12" Color="{Property this.AccentColor}" ux:Name="_c" Opacity="0"/>
+    </Panel>
+    <SmallValueText TextAlignment="Center" Margin="4,0" Alignment="VerticalCenter" Value="NO" TextWrapping="Wrap"  ux:Name="_t"/>
+  </WrapPanel>
+  <WhileTrue Value="{Property this.Value}">
+    <Change _c.Opacity="1" Duration=".2" Easing="CubicOut" EasingBack="CubicIn" />
+    <Change _t.Value="YES" Duration=".2" />
+  </WhileTrue>
+
+  <Clicked>
+    <Toggle Target="this" />
+  </Clicked>
+</ToggleControl>

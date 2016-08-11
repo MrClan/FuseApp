@@ -1,0 +1,60 @@
+<Page ux:Class="Hotels">
+	<Router ux:Dependency="router" />
+	<JavaScript File="./Hotels.js" />
+	<EdgeNavigator ux:Name="EdgeNavigator">		
+		<!-- Add a panel to the left edge -->
+		<Sidebar Width="180" ux:Name="menu" EdgeNavigation.Edge="Left" router="router" />
+		<Sidebar Width="180" ux:Name="menu1" EdgeNavigation.Edge="Right" router="router" />
+		<DockPanel>
+			<TopFrameBackground Dock="Top"/>
+			<BottomFrameBackground Dock="Bottom"/>
+			<Translation ux:Name="mainAppTranslation" />
+			<StackPanel Dock="Top">
+				<HeaderBar titleText="HOTELS"/>
+				<DockPanel Alignment="VerticalCenter">
+					<ntf.LeftArrow Clicked="{gotoPrev}" Alignment="Center" Dock="Left" Color="{Resource TextValueColor}" FontSize="27" Margin="12" ux:Name="prevBtn">
+						<WhileFalse Value="{hasPrev}">
+							<Change prevBtn.Color="#ccc" />
+						</WhileFalse>
+					</ntf.LeftArrow>
+					<Basic.Button Text="{btnText}" Dock="Fill" Clicked="{toggleView}" ux:Name="btnFilters" Margin="12"/>
+					<ntf.RightArrow Clicked="{gotoNext}" Alignment="Center" Dock="Right" Color="{Resource TextValueColor}" FontSize="27" Margin="12" ux:Name="nextBtn">
+						<WhileFalse Value="{hasNext}">
+							<Change nextBtn.Color="#ccc" />
+						</WhileFalse>
+					</ntf.RightArrow>
+				</DockPanel>
+			</StackPanel>
+			<DockPanel Dock="Fill">
+				<WhileTrue Value="{isReady}">
+					<ScrollView Dock="Fill">
+						<StackPanel>						
+							<ntf.TextHighlightValue Margin="12" Value="{resultsCount}"/>
+							<StackPanel ux:Name="spFilters" Visibility="{spFiltersVisibility}" Margin="12" ItemSpacing="4">
+								<ntf.TextBox PlaceholderText="Hotel name" Value="{curHotelName}"/>
+								<ntf.ComboBox Label="City:" Options="{utils.cities}" Selected="{curCity}" Width="192"/>
+								<ntf.ComboBox Label="PriceRange:" Options="{utils.priceRanges}" Selected="{curPriceRange}" Width="192"/>
+								<ntf.ComboBox Label="Cuisine:" Options="{utils.cuisines}" Selected="{curCuisine}" Width="192"/>
+								<StackPanel Orientation="Horizontal" Alignment="Center">
+									<Basic.Button Text="Apply Filters" Clicked="{searchHotels}"/>
+									<Basic.Button Text="Clear" Clicked="{clearSearch}"/>
+								</StackPanel>
+							</StackPanel>
+							<StackPanel ux:Name="spConrtent" Visibility="{spContentVisibility}">
+								<Each Items="{hotelsList}">
+									<HotelCard />
+									<Basic.Button Text="More Details" Clicked="{gotoHotelDetails}"/>
+								</Each>
+							</StackPanel>
+						</StackPanel>
+					</ScrollView>				
+				</WhileTrue>
+				<WhileFalse Value="{isReady}">
+					<Panel Alignment="VerticalCenter">
+						<ntf.TextHighlightValue TextAlignment="Center" Value="Refreshing data...please wait"/>
+					</Panel>
+				</WhileFalse>
+			</DockPanel>
+		</DockPanel>
+	</EdgeNavigator>
+</Page>

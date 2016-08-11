@@ -1,0 +1,107 @@
+<Page ux:Class="Profile">
+	<Router ux:Dependency="router" />
+	<EdgeNavigator ux:Name="EdgeNavigator">
+		<!-- Add a panel to the left edge -->
+		<Sidebar Width="180" ux:Name="menu" EdgeNavigation.Edge="Left" router="router" />
+		<!-- <JavaScript File="../Modules/Profile.js" /> -->
+		<DockPanel Background="#282F3B">
+			<WhileTrue ux:Name="headerBarState"></WhileTrue>
+			<Clicked>
+				<Toggle Target="headerBarState" />
+				<DebugAction Message="switching" />
+			</Clicked>
+			<Translation ux:Name="mainAppTranslation" />
+			<iOS.StatusBarConfig Style="Light" />
+			<StatusBarBackground Dock="Top"/>
+
+			<DockPanel Dock="Fill" Clicked="{gotoHotels}">
+				<!-- <HeaderBar router="router" sidebar="menu" edgeNav="EdgeNavigator" titleText="PROFILE" headerBarState="{headerBarState}"/> -->
+				<HeaderBar titleText="PROFILE"/>
+
+				<DockPanel Dock="Fill">
+					<Panel Dock="Top">
+						<Grid Columns="auto,1*">
+
+							<Panel Width="110" Height="110">
+								<Rectangle Color="Blue" Margin="6" CornerRadius="5" Layer="Background" Clicked="{logout}">									
+									<ImageFill File="../Assets/n.jpg" StretchMode="UniformToFill"/>
+								</Rectangle>
+								<Rectangle Color="#ccc" Width="21" Height="15" Margin="0,0,9,9" Opacity="0.75" Alignment="BottomRight">
+									<ImageFill File="../Assets/camera.png" StretchMode="UniformToFill"/>
+								</Rectangle>
+							</Panel>
+
+							<Panel Margin="0,15,15,15">
+								<StackPanel ItemSpacing="10">
+
+									<DockPanel MinWidth="180" MaxWidth="400">
+										<ProgressBar Dock="Bottom" />
+										<StackPanel Dock="Left" Margin="5">
+											<SmallValueText Value="Updated:"/>
+											<SmallValueText Value="Today 2:01 PM"/>
+										</StackPanel>
+										<Panel Dock="Right" Margin="5">
+											<LargeValueText Alignment="VerticalCenter">50%</LargeValueText>
+										</Panel>
+										<Rectangle Fill="#58606E" CornerRadius="5" Layer="Background" />
+									</DockPanel>
+
+									<Panel MinWidth="180" MaxWidth="400">
+										<Grid Columns="auto,auto,1*" >
+											<Panel Margin="0,0,2,0" Padding="2">
+												<Circle Width="24" Padding="12" Color="#8FE0DC" Height="24" Alignment="VerticalCenter" Margin="4">
+													<ImageFill File="../Assets/Icons/user.png" StretchMode="UniformToFill"/>
+												</Circle>
+											</Panel>
+											<Panel Width="2" Background="#282F3B">
+											</Panel>
+											<LabelText Background="#58606E" Dock="Right" Padding="0" Alignment="VerticalCenter" Margin="4" Value="{user.email}"/>
+										</Grid>
+										<Rectangle Fill="#58606E" CornerRadius="5"/>
+									</Panel>
+
+								</StackPanel>
+							</Panel>
+						</Grid>
+					</Panel>
+
+					<Panel Dock="Fill">
+						<ScrollView>
+							<StackPanel Background="#58606E" ItemSpacing="4">
+								<ProfileRow Label="PROFESSION" FieldValue="WESTERNHELD" IconFile="../Assets/job.png"/>
+								<ProfileRow Label="BIRTHDAY" FieldValue="{user.birthday}" IconFile="../Assets/birthday.png" />
+								<ProfileRow Label="EMAIL" FieldValue="{user.email}" IconFile="../Assets/email.png" />
+								<ProfileRow Label="NOTIFICATIONS" FieldValue="NO" IconFile="../Assets/notification.png" IsSwitch="true" />
+								<ProfileRow Label="SHOW LOCATION" FieldValue="NO" IconFile="../Assets/location.png" IsSwitch="true"/>
+								<ProfileRow Label="VIBRATE" FieldValue="YES" IconFile="../Assets/vibrate.png" />
+								<ProfileRow Label="FACEBOOK LINKED" FieldValue="NO" IconFile="../Assets/facebook.png" />
+								<ProfileRow Label="USE LOCAL TIME" FieldValue="YES" IconFile="../Assets/time.png" />
+								<ProfileRow Label="ACCEPT REQUESTS" FieldValue="NO" IconFile="../Assets/friends.png" />
+								<ProfileRow Label="AUTO UPDATE" FieldValue="NO" IconFile="../Assets/update.png" IsSwitch="true"/>
+							</StackPanel>
+						</ScrollView>
+					</Panel>
+				</DockPanel>
+
+				<Panel Dock="Bottom" Height="54" Clicked="{readUserData}">
+					<Grid Columns="1*,1*,1*" Dock="Bottom">
+						<DockPanel>
+							<TinyText Alignment="Center" Margin="0,3,0,3" Dock="Bottom">Notifications</TinyText>
+							<Image File="../Assets/Icons/chat.png" Margin="3" Alignment="Center" Dock="Fill"/>
+						</DockPanel>
+						<DockPanel>
+							<TinyText Alignment="Center" Margin="0,3,0,3" Dock="Bottom">Friends Online</TinyText>
+							<Image File="../Assets/Icons/friends.png" Margin="3" Alignment="Center" Dock="Fill" />
+						</DockPanel>
+						<DockPanel>
+							<TinyText Alignment="Center" Margin="0,3,0,3" Dock="Bottom">Account</TinyText>
+							<Image File="../Assets/Icons/settings.png" Margin="3" Alignment="Center" Dock="Fill" />
+						</DockPanel>
+					</Grid>
+				</Panel>
+			</DockPanel>
+
+			<BottomBarBackground Dock="Bottom"/>
+		</DockPanel>
+	</EdgeNavigator>
+</Page>

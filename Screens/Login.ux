@@ -1,0 +1,21 @@
+<DockPanel ux:Class="Login">
+	<Router ux:Dependency="router" />
+	<JavaScript File="./login.js"/>
+	<Video Layer="Background" File="../Assets/Videos/nature.mp4" IsLooping="true" AutoPlay="true" StretchMode="UniformToFill" Opacity="0.5">			
+	</Video>
+	<BottomFrameBackground Dock="Bottom"/>		
+	<TopFrameBackground Dock="Top" />
+	<ScrollView Dock="Fill">
+		<StackPanel Dock="Bottom" ItemSpacing="24" Margin="4" Padding="4">
+			<ntf.UserHeader Margin="0" Dock="Top" Image="{imagePath}"></ntf.UserHeader>
+			<ntf.TextBox PlaceholderText="username" Icon="../Assets/User.png" Value="{tu}"/>
+			<ntf.TextBox IsPassword="true" PlaceholderText="password" Icon="../Assets/time.png"  Value="{tp}"/>
+			<ntf.Button Text="Login" Height="48" Clicked="{getUserKey}" IsEnabled="{isReady}"/>
+			<DockPanel>
+				<ntf.UnderlinedText Dock="Left" Text="Forgot Password?" Clicked="{save}"/>
+				<ntf.UnderlinedText Dock="Right" Text="Signup Here" Clicked="{gotoSignup}"/>
+			</DockPanel>
+			<ntf.TextHighlightValue Value="{txtMsgs}" TextAlignment="Center"/>
+		</StackPanel>
+	</ScrollView>
+</DockPanel>

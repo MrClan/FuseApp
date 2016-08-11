@@ -1,0 +1,80 @@
+<StackPanel ux:Class="Sidebar" Background="#212831">
+	<Router ux:Dependency="router" />
+	<!-- <Translation ux:Dependency="translation" /> -->
+	<!-- <WhileInactive Threshold="0.4">
+		<Move Target="user" X="-180" Duration="0.2" Delay="0.3" Easing="CircularIn" />
+		<Move Target="stats" X="-180" Duration="0.2" Delay="0.2" Easing="CircularIn" />
+		<Move Target="messages" X="-180" Duration="0.2" Delay="0.05" Easing="CircularIn" />
+	</WhileInactive> -->
+
+	
+	<!-- <ActivatingAnimation>
+		<Change translation.X="180" />
+	</ActivatingAnimation> -->
+
+
+	<StackPanel ux:Name="user" Clicked="{gotoProfile}">
+		<Panel Height="24" />
+		<Circle Width="85" Height="85" Color="Blue">
+			<ImageFill File="../Assets/n.jpg" StretchMode="UniformToFill"/>
+		</Circle>
+		<Username Value="{userInfo.userProfile.FirstName}"/>
+	</StackPanel>
+
+	<Grid ux:Name="stats" Alignment="HorizontalCenter" ColumnCount="3" Margin="0,10,0,15">
+		<StackPanel Width="70">
+			<Stats Value="SE II"/>
+			<Relations Value="other info"/>
+		</StackPanel>
+		<Rectangle Height="40" Width="1">
+			<SolidColor Color="#414f5e" />
+		</Rectangle>
+		<StackPanel Width="70">
+			<Stats Value="KTM"/>
+			<Relations Value="ktm, Nepal"/>
+		</StackPanel>
+	</Grid>
+	
+	<ScrollView MinHeight="240" Height="390" MaxHeight="480" Margin="0,0,0,40">
+		<StackPanel>
+			<StackPanel Clicked="{logout}">
+				<SidebarIcon File="../Assets/icons/location.png" />
+				<MenuLabel Value="LOG OUT"/>
+			</StackPanel>
+			<Each Items="{MenuItems}">
+				<StackPanel ux:Name="{name}" Clicked="{gotoRoute}">
+					<SidebarIcon File="{icon}" />
+					<MenuLabel Value="{text}"/>
+				</StackPanel>
+			</Each>
+		</StackPanel>
+	</ScrollView>
+	<JavaScript>
+	var utils = require('../Modules/Utils.js');
+	module.exports = {		
+		userInfo: utils.getUserInfo(),
+		gotoRoute: function(arg){
+			router.push(arg.data.target);
+		},
+		logout: function(){
+			console.log( 'Logging out...');
+			utils.logout(router);
+		},
+		gotoProfile: function(){
+			router.push('profile');
+		},
+		MenuItems: [
+			{name:'accomodation', icon:'Assets/icons/location.png', target:'hotels', text:'ACCOMODATION' },
+			{name:'planner', icon:'Assets/icons/location.png', target:'planner', text:'PLANNER'},
+			{name:'mytrips', icon:'Assets/icons/birthday.png', target:'logout', text:'MY TRIPS' },
+			{name:'myblogs', icon:'Assets/icons/location.png', target:'settings', text:'MY BLOGS' },
+			{name:'messages', icon:'Assets/icons/birthday.png', target:'packages', text:'MESSAGES' },
+			{name:'myreviews', icon:'Assets/icons/location.png', target:'packages', text:'MY REVIEWS' },
+			{name:'destinations', icon:'Assets/icons/location.png', target:'packages', text:'DESTINATIONS' },
+			{name:'packages', icon:'Assets/icons/location.png', target:'packages', text:'PACKAGES' },
+			{name:'events', icon:'Assets/icons/location.png', target:'packages', text:'EVENTS' },
+			{name:'settings', icon:'Assets/icons/location.png', target:'packages', text:'SETTINGS' }			
+		]
+	}
+	</JavaScript>	
+</StackPanel>

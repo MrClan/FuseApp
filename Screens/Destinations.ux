@@ -1,0 +1,14 @@
+<DockPanel ux:Class="Destinations" Color="Red" Clicked="{clicked}">
+	<Router ux:Dependency="router" />
+	<WrapPanel Dock="Fill" Alignment="Center" Orientation="Vertical">
+	<Huge Dock="Fill"  Value="Destinations"/>
+	</WrapPanel>
+	<JavaScript>
+	module.exports = {
+		clicked: function(){
+			router.goto('categories');
+		}
+	}
+	</JavaScript>
+
+</DockPanel>

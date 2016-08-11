@@ -1,0 +1,23 @@
+<Panel ux:Class="TopBar" Dock="Top" Height="39" Background="#fff">
+	<!-- <EdgeNavigator ux:Dependency="edgeNav" />
+	<Grid Columns="auto,1*,auto">
+		<Panel Width="50" HitTestMode="LocalBounds">
+			<Clicked>
+				<Set edgeNav.Active="menu" />
+			</Clicked>
+			<Rectangle ux:Name="topRectangle" Height="2" Width="26" Fill="#000">
+				<Translation Y="-9" ux:Name="topMenuTranslation" />
+				<Rotation ux:Name="topMenuRotation" />
+			</Rectangle>
+			<Rectangle ux:Name="middleRectangle" Height="2" Width="26" Fill="#000" />
+			<Rectangle ux:Name="bottomRectangle" Height="2" Width="26" Fill="#000">
+				<Translation Y="9" ux:Name="bottomMenuTranslation" />
+				<Rotation ux:Name="bottomMenuRotation" />
+			</Rectangle>
+		</Panel>
+		<Panel>
+			<Name Alignment="Center" Value="PROFILE" FontSize="18" Color="#282F3B" />
+		</Panel>
+		<Panel Width="50" />
+	</Grid> -->
+</Panel>

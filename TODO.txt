@@ -1,0 +1,150 @@
+NEXT STEPS TODO: (as a reminder to us)
+Use Syncano to signup user : DONE
+add validation for username and password and display intuitive error messages
+take the user to their login screen
+save userLoggedIn status to the local settings so that the they won't have to login everytime
+basic profile management with account balance
+_______________________________________________________________
+show categories from backend data
+navigate through tabs with hotels cities (use query to filter out results)
+
+
+- After signup navigate to profile page : DONE
+- Validation in username/password : DONE
+- Save current user details in local settings : DONE
+- Auto login user on next app launch using the locally saved user key. But first verify that the user exists.
+- Setup user profile : 
+
+
+
+
+
+		SAVE USER IMAGE IN LOCAL CACHE
+		COMPLETE SIGNIN AND SIGNUP WITH SYNCANO : DONE
+		UPDATE SETTINGS UI TO USE TEXTVIEWS
+		ADD HOTELS SEARCH AND FETCH FROM URL AND HOTEL DETAILS PAGE
+		TOP DESTINATIONS [http://media02.hongkiat.com/creative-travel-app-designs/traveller-app.jpg]
+		http://media02.hongkiat.com/creative-travel-app-designs/hotel-booking-2.jpg
+		blog Detail: [http://media02.hongkiat.com/creative-travel-app-designs/travel-app.jpg]
+		Forgot Password
+		Move some fixed objects (like cities) offline
+		Implement a custom 2way slider control for price range : like in the halftone fuse sample
+		search hotels:
+			hotel name
+			price range
+			food type
+			location/city
+			availability
+			special offers/discounts
+		store images to syncano db(hotel images)
+		optimize images
+		save user profile picture
+		check internet connection: maybe use timeouts for requests done using fetch
+		apply paging using the next param of the syncanoResponse
+		get user profile details
+		add logout to sidebar
+NOTES:
+	- options to specify if vegetarian or not ::: in trip planner section
+	- 
+	
+BUGS:
+
+	- pages in navigator are all stacked one on another ::: this causes other pages to show up during transitions
+	- sidebar stays open even when navigated from the profilePage
+	- scripts on other pages fire too on reload, which always causes the app to navigate to profile page
+	- reuse the same sidebar on different pages
+	- unable to pass Translation as dependency : Solved [was due to circular reference i.e. both child and parent was being passed as dependencies to the same class]
+	- design issues in Hotels Page, for iPhone6 the text flows out of card-boundary
+	
+	
+CITY CLASS :
+curl -X PATCH \
+-H "X-API-KEY: 6eaf19fb9f6e42c2304c1a48706b63a3bba55290" \
+-H "Content-Type: application/json" \
+-d '{"schema":[{"order_index":true,"filter_index":true,"type":"string","name":"Name"},{"filter_index":true,"type":"string","name":"Description"}]}' \
+"https://api.syncano.io/v1.1/instances/neptripfuse/classes/city"/
+
+var Syncano = require('syncano');
+var connection = Syncano({accountKey: '6eaf19fb9f6e42c2304c1a48706b63a3bba55290'});
+var Class = connection.Class;
+
+var update = {
+  "schema": [
+    {"order_index":true,"filter_index":true,"type":"string","name":"Name"},
+    {"filter_index":true,"type":"string","name":"Description"}
+  ]
+};
+
+Class
+  .please()
+  .update({name: 'city', instanceName: 'neptripfuse'}, update)
+  .then(calback);
+  
+  
+  ((minPrice <= h.minPrice && h.minPrice <= maxPrice) || (minPrice <= h.maxPrice && h.maxPrice <= maxPrice))
+  
+  
+  arr.push(new Field(data.profile.type + arr.length, 'pitch', 'text', 'About Me', 'Provide additional information that could be useful for your potential contacts.', data.data.pitch));
+            arr.push(new Field(data.profile.type + arr.length, 'industries', 'multiselect', 'Industries I Work With', 'Select at least one industry you work with.', data.data.industries));
+            arr.push(new Field(data.profile.type + arr.length, 'interests', 'multiselect', 'My Interests', 'Select at least two interests that characterize you best.', data.data.interests));
+            arr.push(new Field(data.profile.type + arr.length, '', 'spacer', '', '', ''));
+            arr.push(new Field(data.profile.type + arr.length, 'genders', 'singleselect', 'Gender(s) I network with', 'Choose which gender you prefer to network with.', data.data.genders));
+            arr.push(new Field(data.profile.type + arr.length, 'ages', 'multiselect', 'Age(s) I network with', 'Choose which age group you prefer to network with.', data.data.ages));
+            arr.push(new Field(data.profile.type + arr.length, '', 'spacer', '', '', ''));
+            if (active == true) {
+                arr.push(new Field(data.profile.type + arr.length, 'disable', 'button', 'Disable Profile', '', ''));
+            } else {
+                arr.push(new Field(data.profile.type + arr.length, 'enable', 'button', 'Enable Profile', '', ''));
+            }
+
+			
+<Panel Background="#eee" Dock="Fill">
+            <ScrollView>
+                <StackPanel ItemSpacing="5" Margin="5">
+
+                    <Each Items="{fields}">
+                        <Panel>
+                            <Match Value="{type}">
+                                <Case String="picture">
+                                    <FormPicture ux:Name="FormField" Label="{label}" Text="{content}" Busy="{saving}" />
+                                </Case>
+                                <Case String="text">
+                                    <FormField ux:Name="FormField" Label="{label}" Text="{content}" />
+                                </Case>
+                                <Case String="multiselect">
+                                    <FormField ux:Name="FormField" Label="{label}" Text="{content}" />
+                                </Case>
+                                <Case String="singleselect">
+                                    <FormField ux:Name="FormField" Label="{label}" Text="{content}" />
+                                </Case>
+                                <Case String="button">
+                                    <FormButton ux:Name="FormField" Text="{label}" />
+                                </Case>
+                                <Case String="spacer">
+                                    <Panel Height="5" />
+                                </Case>
+                            </Match>
+                        </Panel>
+                    </Each>
+
+                </StackPanel>
+            </ScrollView>
+        </Panel>			
+		
+		
+so generally you use this pattern when you need to do an async map:
+
+ASYNC PATTERN WITH OBSERVABLES
+var foo = something.map(function(x) {
+    var result = Observable();
+
+    somethingAsync(x).then(function(res) {
+        result.value = res;
+    })
+
+    return result;
+}).inner();
+
+now `foo` will eventually hold the result of `somethingAsync`
+
+and you can do `.map` again on `foo` etc

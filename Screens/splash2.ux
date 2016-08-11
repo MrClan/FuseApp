@@ -1,0 +1,174 @@
+<Panel ux:Class="Splash2">
+	<Router ux:Dependency="router" />
+	<Fuse.iOS.StatusBarConfig ux:Name="statusBarConfig" Style="Light" IsVisible="true" Animation="Slide" />
+
+	<Image ux:Class="Icon" StretchDirection="DownOnly" StretchMode="Uniform" Margin="1" />
+
+	<Icon ux:Class="AccountIcon">
+		<MultiDensityImageSource>
+			<FileImageSource File="../assets/profile@1x.png" Density="1" />
+			<FileImageSource File="../assets/profile@2x.png" Density="2" />
+		</MultiDensityImageSource>
+	</Icon>
+
+	<Icon ux:Class="AddIcon">
+		<MultiDensityImageSource>
+			<FileImageSource File="../assets/add@1x.png" Density="1" />
+			<FileImageSource File="../assets/add@2x.png" Density="2" />
+		</MultiDensityImageSource>
+	</Icon>
+
+	<Icon ux:Class="StickersIcon">
+		<MultiDensityImageSource>
+			<FileImageSource File="../assets/stickers@1x.png" Density="1" />
+			<FileImageSource File="../assets/stickers@2x.png" Density="2" />
+		</MultiDensityImageSource>
+	</Icon>
+
+	<Panel ux:Class="SidebarIcon2" ux:Name="self" Width="50" Height="50">
+		<Circle Layer="Overlay">
+			<Stroke Width="5">
+				<SolidColor Color="#7784a6" />
+			</Stroke>
+		</Circle>
+
+		<Circle ux:Name="tapAnimationCircle" Layer="Overlay">
+			<Stroke ux:Name="tapAnimationStroke" Width="3">
+				<SolidColor Color="#fff5" />
+			</Stroke>
+		</Circle>
+
+		<Tapped>
+			<Scale Target="tapAnimationCircle" Factor="5"
+				   Duration="0.5" Easing="QuarticOut"
+				   DurationBack="0" />
+
+			<Change tapAnimationCircle.Opacity="0"
+					Duration="0.5" Easing="QuarticOut"
+					DurationBack="0" />
+
+			<Change tapAnimationCircle.Smoothness="10"
+					Duration="0.5" Easing="QuarticOut"
+					DurationBack="0" />
+
+			<Change tapAnimationStroke.Width="0"
+					Duration="0.5" Easing="ExponentialOut"
+					DurationBack="0" />
+		</Tapped>
+	</Panel>
+
+	<StackPanel ux:Class="HamburgerIcon" Width="25" Height="21">
+		<Rectangle ux:Class="HamburgerPart" Margin="0,2" Height="3" CornerRadius="3" Color="#fff" />
+
+		<HamburgerPart />
+		<HamburgerPart />
+		<HamburgerPart />
+	</StackPanel>
+
+	<Panel ux:Class="CloseIcon" Width="25" Height="25">
+		<Rectangle ux:Class="CrossPart" Height="3" CornerRadius="3" Color="#fff" />
+		<CrossPart>
+			<Rotation Degrees="45" />
+		</CrossPart>
+		<CrossPart>
+			<Rotation Degrees="-45" />
+		</CrossPart>
+	</Panel>
+
+	<DockPanel>
+		<BottomBarBackground Dock="Bottom" />
+
+		<DockPanel>
+			<WhileTrue ux:Name="showMenu">
+				<Rotate Target="content" Degrees="-45"
+						Duration="0.45"    Easing="ExponentialInOut"
+						DurationBack="0.6" EasingBack="BounceIn" />
+
+				<Rotate Target="menuButton" Degrees="-90"
+						Duration="0.45"    Easing="ExponentialInOut"
+						DurationBack="0.6" EasingBack="BounceIn" />
+
+				<Move Target="profileButton" X="120"
+					  Delay="0.3"   Duration="0.6"     Easing="ElasticOut"
+					  DelayBack="0" DurationBack="0.3" EasingBack="QuarticInOut" />
+
+				<Move Target="stickersButton" X="150"
+					  Delay="0.32"  Duration="0.65"    Easing="ElasticOut"
+					  DelayBack="0" DurationBack="0.3" EasingBack="QuarticInOut" />
+
+				<Move Target="addButton" X="180"
+					  Delay="0.34"  Duration="0.7"     Easing="ElasticOut"
+					  DelayBack="0" DurationBack="0.3" EasingBack="QuarticInOut" />
+
+				<Change statusBarConfig.IsVisible="false" Delay=".25" />
+			</WhileTrue>
+
+			<Panel ux:Name="menuButton" Width="170" Height="170" Alignment="TopLeft" Offset="-85,-85" Padding="40">
+				<Circle Layer="Background">
+					<SolidColor Color="#EE8485" />
+				</Circle>
+				<HamburgerIcon Alignment="BottomRight"/>
+				<CloseIcon Alignment="BottomLeft" />
+
+				<Clicked><Toggle Target="showMenu" /></Clicked>
+			</Panel>
+
+			<Panel Dock="Top">
+				<iOS>
+					<Panel ux:Name="statusBarBackground" Height="20" />
+				</iOS>
+
+				<Android>
+					<StatusBarBackground />
+				</Android>
+			</Panel>
+
+			<Panel ux:Name="content" TransformOrigin="TopLeft">
+				<Grid RowCount="4">
+					<Panel><SolidColor Color="#FDF0CC" /></Panel>
+					<Panel><SolidColor Color="#F7CAB1" /></Panel>
+					<Panel><SolidColor Color="#E8A0A2" /></Panel>
+					<Panel><SolidColor Color="#C2768E" /></Panel>
+				</Grid>
+				<Clicked><Toggle Target="showMenu" /></Clicked>
+			</Panel>
+
+			<StackPanel ux:Name="sidebar" Offset="-130,0" Alignment="BottomLeft" Margin="0,0,0,50">
+				<DockPanel ux:Class="IconAndLabel" ux:Name="self" Margin="30">
+					<string ux:Property="Text" />
+					<Text TextColor="#fffa" FontSize="14" Alignment="HorizontalCenter" Margin="0,10,0,0" Dock="Bottom" Font="RobotoBold" Value="{Property self.Text}" />
+				</DockPanel>
+
+				<IconAndLabel ux:Name="profileButton" Text="PROFILE">
+					<SidebarIcon2>
+						<AccountIcon />
+					</SidebarIcon2>
+
+					<Clicked>
+						<Set showMenu.Value="false" />
+					</Clicked>
+				</IconAndLabel>
+
+				<IconAndLabel ux:Name="stickersButton" Text="STICKERS">
+					<SidebarIcon2>
+						<StickersIcon />
+					</SidebarIcon2>
+
+					<Clicked>
+						<Set showMenu.Value="false" />
+					</Clicked>
+				</IconAndLabel>
+
+				<IconAndLabel ux:Name="addButton" Text="ADD STICKER">
+					<SidebarIcon2>
+						<AddIcon />
+					</SidebarIcon2>
+
+					<Clicked>
+						<Set showMenu.Value="false" />
+					</Clicked>
+				</IconAndLabel>
+			</StackPanel>
+		</DockPanel>
+	</DockPanel>
+</Panel>

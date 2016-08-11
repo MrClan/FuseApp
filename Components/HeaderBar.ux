@@ -1,0 +1,46 @@
+<Panel ux:Class="HeaderBar" Dock="Top" Height="39" Background="#fff" titleText="NOT SPECIFIED">
+ 	<string ux:Property="titleText" />
+<!-- 
+	<EdgeNavigator ux:Dependency="edgeNav" />
+
+	<Router ux:Dependency="router" />
+	<Sidebar ux:Dependency="sidebar" router="router" />
+
+	<bool ux:Property="headerBarState" />
+	<WhileTrue ux:Name="SidebarActive" Value="{Property headerBarState}">
+		<Change tran.X="180"  Duration="0.5"/>
+		<Change tran2.X="80"  Duration="0.5"/>
+		<Change topMenuTranslation.Y="0" Duration="0.5"/>
+		<Change bottomMenuTranslation.Y="0"  Duration="0.5" />
+		<Change middleRectangle.Opacity="0" Easing="CircularOut"  Duration="0.5"/>
+		<Change topMenuRotation.Degrees="45" Easing="ExponentialIn"  Duration="0.5"/>
+		<Change bottomMenuRotation.Degrees="-45" Easing="ExponentialIn"  Duration="0.5"/>
+		<Change topRectangle.Width="28"  Duration="0.5"/>
+		<Change bottomRectangle.Width="28"  Duration="0.5"/> 
+	</WhileTrue>
+  -->
+ 	<Grid Columns="auto,1*,auto">		
+		<Panel Width="50" HitTestMode="LocalBounds">
+<!-- 			<Clicked>
+				<Set edgeNav.Active="sidebar" />
+				<Toggle Target="SidebarActive" />
+			</Clicked>
+ -->
+ 			<Translation ux:Name="tran" />
+			<Rectangle ux:Name="topRectangle" Height="2" Width="26" Fill="#000">
+				<Translation Y="-9" ux:Name="topMenuTranslation" />
+				<Rotation ux:Name="topMenuRotation" />
+			</Rectangle>
+			<Rectangle ux:Name="middleRectangle" Height="2" Width="26" Fill="#000" />
+			<Rectangle ux:Name="bottomRectangle" Height="2" Width="26" Fill="#000">
+				<Translation Y="9" ux:Name="bottomMenuTranslation" />
+				<Rotation ux:Name="bottomMenuRotation" />
+			</Rectangle>
+		</Panel>
+		<Panel>
+			<Translation ux:Name="tran2" />
+			<Name Alignment="Center" Value="{Property titleText}" FontSize="18" Color="#282F3B" />
+		</Panel>
+		<Panel Width="50" />
+	</Grid>	
+</Panel>

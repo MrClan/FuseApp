@@ -1,0 +1,9 @@
+<StackPanel ux:Class="ntf.UserHeader" Alignment="Center" Height="120" Image="User.png">
+	<FileSource ux:Property="Image" />
+	<Text Value="Welcome Back" Margin="12" Color="#ccc" FontSize="18" Alignment="Center"/>
+	<Circle Height="57" Color="#CEB386">
+		<Stroke Width="2" Color="#ccc" />
+		<ImageFill File="{Property Image}" StretchMode="Uniform" />
+	</Circle>
+	<Text Value="Name of the user" Margin="12" Color="#ccc" FontSize="10" Alignment="Center"  TextColor="Red" />
+</StackPanel>

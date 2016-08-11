@@ -1,0 +1,82 @@
+<Panel ux:Class="ntf.ComboBox" Color="#ddd" Margin="10" Alignment="Top">
+  <object ux:Property="Options" />
+  <object ux:Property="Selected" />
+  <string ux:Property="Label" />
+  <Size ux:Property="Width" />
+  <JavaScript>
+	var Observable = require('FuseJS/Observable');
+
+	var self = this;
+	// console.log('passed options', self.Options);
+
+	// var options = Observable("Foo", "Bar", "Tar", "moo")
+
+	// Alternative:
+	// Use options.value (ie. same as options.getAt(0))
+	// var options = Observable(["Foo", "Bar", "Tar", "moo"])
+
+	var options = self.Options.inner();
+
+	// var selected = "moo";
+	var selected = self.Selected.inner();
+
+	var isOpen = Observable(false);
+
+	module.exports = {
+	  isOpen: isOpen,
+	  options: (options.value || options).map(function(option) {
+		// console.log('option', option);
+		return {
+		  title: option,
+		  isSelected: Observable(function() {
+			return selected.value === option;
+		  }),
+		  clicked: function() {
+			selected.value = option;
+			if (self.Selected.value instanceof Observable) {
+			  self.Selected.value.value = option;
+			}
+			isOpen.value = false;
+		  }
+		}
+	  }),
+	  selected: selected,
+	  toggleOpen: function() {
+		isOpen.value = !isOpen.value;
+	  }
+	}
+  </JavaScript>
+  <WrapPanel Orientation="Horizontal" ux:Name="header" Clicked="{toggleOpen}" HitTestMode="LocalBoundsAndChildren" Color="#34495e" Width="{Property Width}">
+	<ntf.TextHighlight Value="{Property Label}" Margin="4,4,9,4" Alignment="CenterLeft" />
+	<ntf.TextHighlightValue Margin="4" Alignment="CenterRight" Value="{selected}"/>
+	<ntf.DownArrow Margin="4" Alignment="CenterRight" Color="#2ecc71" FontSize="15" />
+	<WhilePressed>
+		<Change header.Color="#34495e" Duration="0.05" DurationBack="0.1"/> 
+	</WhilePressed>
+  </WrapPanel>
+  <Panel Color="#34495e" LayoutRole="Inert" Alignment="Top" MaxHeight="300" ux:Name="dropdown">
+	<Translation RelativeTo="Size" RelativeNode="this" Y="1" />
+	<ScrollView>
+	  <StackPanel LayoutRole="Inert" Alignment="Top">
+		<Each Items="{options}">
+		  <Panel ux:Name="item" Color="#34495e" Clicked="{clicked}">
+			<Each Count="1" TemplateSource="this" TemplateKey="item" />
+			<ntf.TextValue Margin="4" Value="{title}" ux:Name="txt"/>
+			<WhilePressed>
+			  <Change item.Color="#ecf0f1" Duration="0.05" DurationBack="0.1"/>
+			</WhilePressed>
+			<WhileTrue Value="{isSelected}">
+			  <Change txt.Color="#09f"/>
+			  <Change item.Color="#ecf0f1"/>
+			</WhileTrue>
+		  </Panel>
+		</Each>
+	  </StackPanel>
+	</ScrollView>
+	<WhileFalse Value="{isOpen}">
+		<Change dropdown.Opacity="0"/>
+		<Change dropdown.Visibility="Hidden"/>
+		<Move Y="-300"/>
+	</WhileFalse>
+  </Panel>
+</Panel>

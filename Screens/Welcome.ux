@@ -1,0 +1,46 @@
+<Page ux:Class="Welcome" Background="#fb0">
+  <Router ux:Dependency="router" />
+  <JavaScript>
+    module.exports = {
+      go: function(){
+        debugger;
+        router.push("featured");
+      }
+    }
+  </JavaScript>
+  <Button ux:Class="CancelButton" Margin="2">
+    <Panel ux:Template="GraphicsAppearance" HitTestMode="LocalBounds">
+        <LabelText ux:Name="Button_Text" Value="{Property this.Text}"
+         Alignment="Center" TextAlignment="Center" Margin="10" />
+        <Rectangle CornerRadius="4" Layer="Background">
+            <LinearGradient>
+                <GradientStop Offset="0" Color="#58606E" />
+                <GradientStop Offset="1" Color="#282F3B" />
+            </LinearGradient>
+        </Rectangle>
+    </Panel>
+</Button>
+  <DockPanel Clicked="{go}">
+    <iOS.StatusBarConfig Style="Light" />
+    <StatusBarBackground Dock="Top"/>
+    <LabelText Dock="Top" Value="Welcome" Alignment="VerticalCenter" TextAlignment="Center" Margin="10"
+      FontSize="42" Color="#0fb" />
+    <LabelText Dock="Top" Value="ENTER APP" Alignment="VerticalCenter" TextAlignment="Center" Margin="10"
+      FontSize="57" Color="#282F3B" />
+    <Panel Dock="Top" Margin="15" Height="240">
+      <CircleLayout StartAngleDegrees="45" EndAngleDegrees="300"/>
+      <Circle Opacity="0.57"  Color="Blue" Width="48" Height="48" Margin="15"/>
+      <Circle Opacity="0.57"  Color="Blue" Width="48" Height="48" Margin="15"/>
+      <Circle Opacity="0.57"  Color="Blue" Width="48" Height="48" Margin="15"/>
+      <Circle Opacity="0.57"  Color="Blue" Width="48" Height="48" Margin="15"/>
+      <Circle Opacity="0.57"  Color="Blue" Width="48" Height="48" Margin="15"/>
+      <Circle Opacity="0.57"  Color="Blue" Width="48" Height="48" Margin="15"/>
+  </Panel>
+    <Rectangle CornerRadius="4" Layer="Background" Dock="Fill">
+            <LinearGradient>
+                <GradientStop Offset="0" Color="#f60" />
+                <GradientStop Offset="1" Color="#f00" />
+            </LinearGradient>
+    </Rectangle>
+  </DockPanel>
+</Page>

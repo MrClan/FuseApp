@@ -1,0 +1,19 @@
+<Panel>
+	<float4 ux:Global="PrimeColor" ux:Value="#CB6466" />
+	<float4 ux:Global="TextColor" ux:Value="#09f" />
+	<float4 ux:Global="TextValueColor" ux:Value="#2ecc71" />
+	<float4 ux:Global="SecondaryColor" ux:Value="#8FE0DC" />
+	<Font ux:Global="RobotoBold" File="Assets/fonts/Roboto-Bold.ttf" />
+	<Font ux:Global="AlegreyaSans" File="Assets/fonts/AlegreyaSans-Bold.otf" />
+	<Font ux:Global="Lora" File="Assets/fonts/Lora-Regular.ttf" />
+
+	<Font ux:Global="FA" File="Assets/fonts/FontAwesome.otf" />
+	<Font ux:Global="LatoRegular" File="Assets/fonts/Lato-Regular.ttf" />
+	<Font ux:Global="LatoBold"    File="Assets/fonts/Lato-Bold.ttf"   />
+	<Font ux:Global="LatoLight"   File="Assets/fonts/Lato-Light.ttf"  />		
+	<Font ux:Global="LoraItalic"  File="Assets/fonts/Lora-Italic.ttf" />
+
+
+	<!-- SETTINGS KEYS -->
+	<string ux:Global="pref_Category12" ux:Value="pref_Category12" />
+</Panel>

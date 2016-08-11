@@ -1,0 +1,34 @@
+<Panel ux:Class="Test">
+	<Router ux:Dependency="router" />
+	<Viewport Perspective="400" CullFace="Back">
+    <DockPanel Dock="Fill">
+    	<JavaScript>
+    		var o = require('FuseJS/Observable');
+    		var val = o(false);
+    		module.exports = {
+				val: val,
+				toggleVal: function(){
+					val.value = !val.value;
+				}
+    		}
+    	</JavaScript>
+    	<StatusBarBackground Dock="Top" />
+		<BottomBarBackground Dock="Bottom" />
+    	<Panel Height="48" Dock="Bottom">
+    		<Rectangle ux:Name="rekt" Color="#09b">
+    			<Text Value="SIGNUP" ux:Name="txt" Color="#fff"/>
+    		</Rectangle>
+		    <SwipeGesture ux:Name="swipe" Direction="Right" Length="100" Type="Active"/>
+		    <SwipingAnimation Source="swipe">
+		        <Change txt.Value="Login2" />
+		    </SwipingAnimation>
+    	</Panel>
+	  	<iOS.StatusBarConfig Style="Light" />
+        <Rectangle Background="#2ecc71" Dock="Fill" Clicked="{toggleVal}">
+            <Clicked>
+                <Rotate DegreesX="360" Duration="1.5" Easing="QuadraticInOut" DurationBack="0" />                
+            </Clicked>
+        </Rectangle>
+    </DockPanel>
+    </Viewport>
+</Panel>

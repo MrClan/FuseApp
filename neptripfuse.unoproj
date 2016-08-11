@@ -1,0 +1,30 @@
+{
+"RootNamespace": "",
+"Packages": [
+	"Fuse",
+	"FuseJS",
+	"Fuse.BasicTheme",
+	"Fuse.Camera",
+	"Fuse.CameraRoll",
+	"Fuse.ImageTools"
+],
+"Includes": [
+	"*",
+	"Modules/*.js:Bundle",
+	"lib/*.js:Bundle",
+	"api-keys.js:Bundle",
+	"Assets/icons/*.png:Bundle",
+	"syncano-js-1.0.23/dist/*.js:Bundle"
+],
+"Projects": [
+"fuse_modules\\bolav\\fuse-usersettings\\usersettings_include.unoproj"
+],
+"Excludes": [
+"fuse_modules/"
+],
+"FusePM": {
+"Dependencies": [
+"https://github.com/bolav/fuse-usersettings"
+]
+}
+}

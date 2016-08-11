@@ -1,0 +1,27 @@
+<DockPanel ux:Class="Splash" Color="#037C5D">
+	<Router ux:Dependency="router" />
+
+	<ImageFill File="../Assets/bg2.jpg" StretchMode="UniformToFill"/>
+	<DockPanel ClipToBounds="true" Clicked="{enterApp}">
+		<Video Layer="Background" File="../Assets/Videos/nature.mp4" IsLooping="true" AutoPlay="true" StretchMode="UniformToFill" Opacity="0.5">
+			<Blur Radius="4.75" />
+		</Video>
+		<WrapPanel Orientation="Vertical" Alignment="Center">
+			<Huge Value="NepTrip1" Alignment="VerticalCenter"/>
+			<SmallValueText Value="{msg}" Alignment="VerticalCenter"/>
+		</WrapPanel>
+	</DockPanel>
+	<JavaScript>
+	var o = require('FuseJS/Observable');
+	var utils = require('../Modules/Utils.js');
+	var msg = o('');	
+	module.exports = {
+		enterApp: function(){
+			console.log('check if login data already available...if yes go to profile');
+			utils.checkIfUserAlreadyLoggedIn(router, msg);
+		},
+		msg:msg
+	}
+	</JavaScript>
+
+</DockPanel>

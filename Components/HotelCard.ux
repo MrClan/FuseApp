@@ -1,0 +1,39 @@
+<DockPanel ux:Class="HotelCard" Margin="4,12">
+	<Rectangle Layer="Background" ux:Name="dpHotelCard" Color="#ecf0f1" Opacity="0.1" CornerRadius="9"/>
+	<Grid Columns="auto,1*" Dock="Top">
+		<Panel Width="110">
+			<Rectangle Color="Blue" Margin="6" CornerRadius="5" Layer="Background" Clicked="{clicked}">									
+				<ImageFill Url="{imgUrl}" StretchMode="UniformToFill" />
+			</Rectangle>
+		</Panel>
+		<Panel>
+			<StackPanel>
+				<ntf.TextBold Value="{name}" />
+				<Grid Columns="auto,1*">
+					<ntf.TextHighlight Value="Likeability Score:" Margin="3,0"/>
+					<ntf.TextHighlightValue Value="{rating}" Margin="3,0"/>
+					<ntf.TextHighlight Value="Reviews" Margin="3,0"/>
+					<ntf.TextHighlightValue Value="{reviews}" Margin="3,0"/>				
+					<ntf.TextHighlight Value="Price Range(NRs): " Margin="3,0"/>
+					<WrapPanel Orientation="Horizontal">
+						<ntf.TextHighlightValue Value="{minPrice}"/>
+						<ntf.TextHighlightValue Value=" - "/>
+						<ntf.TextHighlightValue Value="{maxPrice}"/>
+					</WrapPanel>
+					<ntf.TextHighlight Value="City" Margin="3,0"/>
+					<WrapPanel>
+						<ntf.TextValue Value="{city}" Margin="0,0,4,0"/>
+						<ntf.TextValue Value="{location}"/>
+					</WrapPanel>
+					<ntf.TextHighlight Value="Food: " Margin="3,0"/>
+					<ntf.TextHighlightValue Value="{food}"/>
+					<ntf.TextHighlight Value="Website: " Margin="3,0"/>
+					<ntf.TextHighlightValue Value="{url}"/>                    
+				</Grid>
+			</StackPanel>
+		</Panel>
+	</Grid>
+	<WhilePressed>
+		<Change dpHotelCard.Color="#34495e" Duration="0.1" Easing="CubicIn" DurationBack="0.3"/>
+	</WhilePressed>
+</DockPanel>

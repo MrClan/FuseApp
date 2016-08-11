@@ -1,0 +1,53 @@
+<Panel ux:Class="Styles">
+	<Text ux:Class="Header" FontSize="18" Color="#34495e" Alignment="VerticalCenter" />
+
+	<Panel ux:Class="VerticalBar" Margin="8,0,8,2" Alignment="VerticalCenter">
+		<Rectangle Height="12" Width="2" Fill="#dcdee3" />
+	</Panel>
+
+	<Panel ux:Class="HorizontalBar" Margin="4" Alignment="VerticalCenter">
+		<Rectangle Fill="#ccc" Height="1" />
+	</Panel>
+
+	<Panel ux:Class="ProgressBar" Margin="4" Alignment="VerticalCenter">
+		<Rectangle Fill="{Resource SecondaryColor}" Height="4" />
+	</Panel>
+
+	<!-- Gloval Styles -->
+	<Text ux:Class="LargeValueText" FontSize="24" Color="{Resource PrimeColor}" Font="{Resource RobotoBold}" />
+	<Text ux:Class="SmallValueText" FontSize="12" Color="{Resource PrimeColor}" Font="{Resource LatoRegular}" />
+	<Text ux:Class="TinyText" FontSize="9" Color="{Resource SecondaryColor}" Font="{Resource LatoRegular}" />
+	<Text ux:Class="LabelText" FontSize="15" Color="{Resource SecondaryColor}" Font="{Resource AlegreyaSans}" />
+	<Text ux:Class="Name" FontSize="15" Font="{Resource RobotoBold}" />
+	<Text ux:Class="Msg" FontSize="14" Font="{Resource LatoRegular}" />
+
+	<!---->
+
+
+	<!-- Sidebar styles-->
+
+	<Text ux:Class="Username" TextAlignment="Center" FontSize="18" TextColor="#fff" Margin="0,8,0,0" Font="{Resource AlegeyaSans}" />
+	<Text ux:Class="Stats" TextAlignment="Center" FontSize="16" TextColor="#fed166" />
+	<Text ux:Class="Relations" TextAlignment="Center" FontSize="11" TextColor="#414f5e" />
+	<Text ux:Class="MenuLabel" TextAlignment="Center" FontSize="18" TextColor="#414f5e" Margin="0,0,0,0"  Font="{Resource LatoBold}" />
+	<Image ux:Class="SidebarIcon" Height="22" Width="22" Margin="0,24,0,9" Color="#7a96b2" />
+
+	<!---->
+
+	<Text ux:Class="Huge" TextAlignment="Center" FontSize="54" TextColor="#fff" Margin="0,8,0,0" Font="{Resource LatoBold}" />
+	<Rectangle ux:Class="ntf.Hr" Height="1" Color="{Resource TextColor}"/>
+	<Text ux:Class="ntf.DownArrow" Value="&#xf0d7;" Font="FA"/>
+	<Text ux:Class="ntf.UpArrow" Value="&#xf0d8;" Font="FA"/>
+	<Text ux:Class="ntf.RightArrow" Value="&#xf138;" Font="FA"/>
+	<Text ux:Class="ntf.LeftArrow" Value="&#xf137;" Font="FA"/>
+	<Text ux:Class="ntf.Checkmark" Value="&#xf00c;" Font="FA"/>	
+
+
+	<!--  ntf styles -->
+	<Text ux:Class="ntf.Text" Font="{Resource LatoLight}" FontSize="12" Color="{Resource TextColor}" TextWrapping="Wrap"/>    
+	<Text ux:Class="ntf.TextValue" Font="{Resource LatoLight}" FontSize="12" Color="{Resource TextValueColor}" TextWrapping="Wrap"/>    
+	<Text ux:Class="ntf.TextBold" Font="{Resource RobotoBold}" FontSize="18" Color="{Resource TextValueColor}" TextWrapping="Wrap"/>
+	<Text ux:Class="ntf.TextHighlight" Font="{Resource LatoLight}" FontSize="15" Color="{Resource TextColor}" TextWrapping="Wrap"/>
+	<Text ux:Class="ntf.TextHighlightValue" Font="{Resource LatoLight}" FontSize="15" Color="{Resource TextValueColor}" TextWrapping="Wrap"/>
+	<Text ux:Class="ntf.TextItalic" Font="{Resource LoraItalic}" FontSize="15" Color="{Resource TextColor}" TextWrapping="Wrap"/>
+</Panel>

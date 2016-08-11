@@ -1,0 +1,141 @@
+<DockPanel ux:Class="Syncano" Color="#212121">
+	<Router ux:Dependency="router" />
+	<WrapPanel Dock="Fill" Alignment="Center" Orientation="Vertical">
+		<Huge Dock="Fill"  Value="Syncano"/>
+		<DockPanel>
+			<JavaScript>
+			debug_log("---- Starting ----");
+			var Observable = require("FuseJS/Observable");
+			var Syncano = require("lib/syncano.fuse.js");
+			var ApiKeys = require("api-keys.js");
+
+			var classname = "tag";
+			var connection = Syncano({
+				accountKey: ApiKeys.accountKey,
+				defaults: { 
+					instanceName: ApiKeys.instanceName, 
+					className: classname
+				}
+			});
+
+			// var instance = new Syncano({accountKey : ApiKeys.accountKey, instance: ApiKeys.instanceName });
+			forceClass(classname);
+
+			// var Tag = Parse.Object.extend("Tag");
+
+			var tags = Observable();
+
+			var updateInterval = 500;
+
+			function forceClass(classname) {
+				console.log("Forcing class");
+
+				var found = 0;
+				connection.Class.please().get({ name: classname }).then(function (response, raw) {
+					console.log("a:" + JSON.stringify(response));
+					console.log("b:" + JSON.stringify(raw));
+					found = 1;
+				}).catch(function(reason) {
+					console.log("forceClass get error: " + reason);
+				}).then(function () {
+					console.log("Finally!!: " + found);
+					if (found) {
+						classExists(classname);
+					}
+					else {
+						debug_log("Creating class");
+
+						var options = {
+							"name":classname,
+							"instanceName": ApiKeys.instanceName,
+							"description":"List of tags",
+							"schema":[
+							{"type":"string","name":"tagtext"}
+							]
+						};
+
+						connection.Class.please().create(options).then(function (response, raw) {
+							console.log("Added class " + JSON.stringify(response));
+							classExists(classname);							
+						}).catch(function (reason) {
+							console.log("forceClass create error: " + reason);
+						});
+
+					}
+				})
+			}
+
+			function classExists (classname) {
+				updateTags();
+			}
+
+			function updateTags() {
+				var filter = {
+					"order_by": "-created_at"
+				};
+				console.log("updateTags");
+
+				connection.DataObject
+				.please()
+				.list(filter)
+				.then(function(res) { 
+					//console.log(JSON.stringify(res));
+					var serverTags = res;
+					for (var i = tags.length; i < serverTags.length; i++) {
+						debug_log("Adding:  " + serverTags[i].tagtext);
+						tags.add(serverTags[i].tagtext);
+					}
+
+					setTimeout(updateTags, updateInterval);
+				})
+				.catch(function (reason) {
+					console.log("updateTags error: " + reason);
+				});
+
+			}
+
+			var currentText = Observable("");
+			function submit() {
+				var object = {"tagtext": currentText.value};
+				debug_log("object: " + JSON.stringify(object));
+
+				connection.DataObject.please().create(object).then(function () {
+					console.log("saved " + currentText.value);
+				}).catch(function (reason) {
+					console.log("submit error: " + reason);
+				});
+
+				currentText.value = "";
+			}
+
+			module.exports = {
+				currentText: currentText,
+				submit: submit,
+				tags: tags,
+				clicked: function(){
+					router.goto('categories');
+				}
+			};
+			</JavaScript>
+
+			<StatusBarBackground Dock="Top" />
+			<BottomBarBackground Dock="Bottom" />
+
+			<Text Dock="Top" Alignment="Center" FontSize="80" Margin="0,50,0,50" TextColor="#1e88e5">tag</Text>
+
+			<StackPanel Dock="Bottom" Margin="0,50,0,0">
+				<Basic.Button Text="Back To Cateogries" Clicked="{clicked}"/>
+				<Basic.TextInput Value="{currentText}" TextAlignment="Center" />
+				<Basic.Button Text="tag" Clicked="{submit}" />
+			</StackPanel>
+
+			<ScrollView ClipToBounds="true">
+				<StackPanel>
+					<Each Items="{tags}">
+						<Text Value="{}" TextWrapping="Wrap" Margin="9" TextAlignment="Center" />
+					</Each>
+				</StackPanel>
+			</ScrollView>
+		</DockPanel>
+	</WrapPanel>
+</DockPanel>

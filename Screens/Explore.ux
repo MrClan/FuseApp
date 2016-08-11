@@ -1,0 +1,14 @@
+<DockPanel ux:Class="Explore" Color="Red" Clicked="{clicked}">
+	<Router ux:Dependency="router" />
+	<WrapPanel Dock="Fill" Alignment="Center" Orientation="Vertical">
+	<Huge Dock="Fill"  Value="Explore"/>
+	</WrapPanel>
+	<JavaScript>
+	module.exports = {
+		clicked: function(){
+			router.push('syncano');
+		}
+	}
+	</JavaScript>
+
+</DockPanel>

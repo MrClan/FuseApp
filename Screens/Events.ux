@@ -1,0 +1,161 @@
+<Panel ux:Class="Events" Background="#CCC">
+	<Router ux:Dependency="router" />
+	<JavaScript>
+		var Observable = require("FuseJS/Observable");
+
+		var resetting = Observable(false);
+
+		function City(name, imageKey, country, visitors, nonVisitors)
+		{
+			this.name = name;
+			this.imageKey = imageKey;
+			this.country = country;
+			this.visitors = Observable(visitors);
+			this.nonVisitors = Observable(nonVisitors);
+			this.degrees = -4 + (8 * Math.random());
+		}
+
+		function reset(x) {
+			resetting.value = true;
+			setTimeout(backToNormal, 300);
+		}
+
+		function backToNormal() {
+			resetting.value = false;
+		}
+
+		module.exports = {
+			cities : [
+			new City("Oslo1", "Oslo", "NORWAY", 3127, 3943),
+			new City("Paris", "Paris", "FRANCE", 10250, 400),
+			new City("San Francisco", "SanFrancisco", "USA", 6700, 5421),
+			new City("Seoul", "Seoul", "KOREA", 5713, 4702),
+			new City("Tokyo", "Tokyo", "JAPAN", 4512, 657)
+			],
+			visited: function(x)
+			{
+				debug_log("Visited " + x.data.name);
+			},
+			notVisited: function(x)
+			{
+				debug_log("Not visited " + x.data.name);
+			},
+			addVisitor: function(x)
+			{
+				x.data.visitors.value = x.data.visitors.value + 1;
+			},
+			removeVisitor: function(x)
+			{
+				x.data.visitors.value = x.data.visitors.value - 1;
+			},
+			addNonVisitor: function(x)
+			{
+				x.data.nonVisitors.value = x.data.nonVisitors.value + 1;
+			},
+			removeNonVisitor: function(x) {
+				x.data.nonVisitors.value = x.data.nonVisitors.value - 1;
+			},
+			reset: reset,
+			resetting: resetting
+		};
+
+		reset();
+	</JavaScript>
+
+	<Panel>
+		<Fuse.iOS.StatusBarConfig Style="Dark" />
+		<FileImageSource File="../Assets/Cities/Paris.jpg" ux:Key="Paris" />
+		<FileImageSource File="../Assets/Cities/Oslo.jpg" ux:Key="Oslo" />
+		<FileImageSource File="../Assets/Cities/San Francisco.jpg" ux:Key="SanFrancisco" />
+		<FileImageSource File="../Assets/Cities/Seoul.jpg" ux:Key="Seoul" />
+		<FileImageSource File="../Assets/Cities/Tokyo.jpg" ux:Key="Tokyo" />
+
+		<Each Items="{cities}">
+			<Panel Margin="0" Height="400" Width="293">
+				<Rotation Degrees="{degrees}" />
+
+				<DockPanel Margin="0" Height="100%" Width="100%">
+
+					<Grid Columns="auto,1*,auto"  Margin="0,14,0,5" Dock="Top">
+						<Image ux:Name="visited" File="../Assets/Emblems/visited.png" Margin="10,0,10,0" Opacity="0" Height="40" Alignment="VerticalCenter" />
+						<StackPanel Alignment="VerticalCenter">
+							<Text Value="{name}" FontSize="18" Alignment="Center" Font="RobotoRegular" TextColor="#434343" />
+							<Text Value="{country}" FontSize="12" Alignment="Center" Font="RobotoMedium" TextColor="#c4c4c4" Margin="0,-3,0,10" />
+						</StackPanel>
+						<Image ux:Name="notVisited" File="../Assets/Emblems/notvisited.png" Margin="10,0,10,0" Opacity="0"  Height="40" Alignment="VerticalCenter" />
+					</Grid>
+
+					<Image ux:Name="visitedOverlay" StretchMode="UniformToFill" File="../Assets/Emblems/VisitedOverlay.png" Opacity="0" Dock="Fill" />
+					<Image ux:Name="notVisitedOverlay" StretchMode="UniformToFill" File="../Assets/Emblems/NotVisitedOverlay.png" Opacity="0" Dock="Fill" />
+					<Image Source="{DataToResource imageKey}" Margin="0" StretchMode="UniformToFill" Dock="Fill" />
+
+					<Grid ColumnCount="2" Margin="0,0,0,0"  Background="#e5e5e5" Dock="Bottom" Height="55">
+						<StackPanel Padding="0,5,1,5" Background="#fff" Margin="0,0,1,0">
+							<Text FontSize="22" Alignment="Center" Font="RobotoMedium" Value="{visitors}" />
+							<Text FontSize="12" Alignment="Center" Font="RobotoRegular" TextColor="#c4c4c4">HAVE BEEN HERE</Text>
+						</StackPanel>
+
+						<StackPanel Padding="0,5,0,5" Background="#fff">
+							<Text FontSize="22" Alignment="Center" Font="RobotoMedium" Value="{nonVisitors}" />
+							<Text FontSize="12" Alignment="Center" Font="RobotoRegular" TextColor="#c4c4c4">HAVEN'T VISITED</Text>
+						</StackPanel>
+					</Grid>
+				</DockPanel>
+				<Panel Background="White" Margin="0" Height="100%" Width="100%">
+					<DropShadow Distance="0" Size="2" ux:Name="shadow" />
+				</Panel>
+
+				<InForceFieldAnimation ForceField="visitedAttractor" From="0.1" To="0.3">
+					<Change visited.Opacity="1" Duration="1" />
+					<Change visitedOverlay.Opacity="1" Duration="1" />
+				</InForceFieldAnimation>
+
+				<InForceFieldAnimation ForceField="visitedAttractor">
+					<Rotate Degrees="-8" />
+				</InForceFieldAnimation>
+
+				<InForceFieldAnimation ForceField="notVisitedAttractor" From="0.1" To="0.3">
+					<Change notVisited.Opacity="1" Duration="1" />
+					<Change notVisitedOverlay.Opacity="1" Duration="1" />
+				</InForceFieldAnimation>
+
+				<InForceFieldAnimation ForceField="notVisitedAttractor">
+					<Rotate Degrees="8" />
+				</InForceFieldAnimation>
+
+				<EnteredForceField ForceField="visitedAttractor" Threshold="0.9" Handler="{visited}" />
+				<EnteredForceField ForceField="notVisitedAttractor" Threshold="0.9" Handler="{notVisited}" />
+
+				<EnteredForceField ForceField="visitedAttractor" Threshold="0.05" Handler="{addVisitor}" />
+				<ExitedForceField ForceField="visitedAttractor" Threshold="0.05" Handler="{removeVisitor}" />
+				<EnteredForceField ForceField="notVisitedAttractor" Threshold="0.05" Handler="{addNonVisitor}" />
+				<ExitedForceField ForceField="notVisitedAttractor" Threshold="0.05" Handler="{removeNonVisitor}" />
+
+				<Draggable />
+
+				<WhileDragging>
+					<BringToFront />
+					<Scale Factor="1.1" Duration="0.5" Easing="BackOut" />
+					<Change shadow.Distance="20" Duration="0.5" Easing="BackOut" />
+					<Change shadow.Size="20" Duration="0.5" Easing="BackOut" />
+				</WhileDragging>
+
+			</Panel>
+		</Each>
+
+		<PointAttractor ux:Name="centerAttractor" Radius="800" Strength="250" />
+		<PointAttractor ux:Name="notVisitedAttractor" Offset="-400,0,0" Radius="380" Strength="600" />
+		<PointAttractor ux:Name="visitedAttractor" Offset="400,0,0" Radius="380" Strength="600" />
+
+		<WhileTrue Value="{resetting}">
+			<Change centerAttractor.Radius="8000" />
+			<Change centerAttractor.Strength="10000" />
+		</WhileTrue>
+
+	</Panel>
+
+	<Panel>
+		<Image Clicked="{reset}" Height="64" Width="64" File="../Assets/Icons/Refresh.png" />
+	</Panel>
+
+</Panel>

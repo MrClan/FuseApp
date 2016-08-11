@@ -1,0 +1,43 @@
+<Panel ux:Class="ProfileRow" Background="#282F3B" Margin="4" ux:Name="_panel">
+	<string ux:Property="Label" />
+	<string ux:Property="FieldValue" />
+	<FileSource ux:Property="IconFile" />
+	<bool ux:Property="IsSwitch" />
+	<bool ux:Property="IsInEditMode" />
+
+	<Grid Columns="auto,auto,auto,1*">
+		<Panel Margin="4">
+			<Image Width="18" Margin="6" File="{Property _panel.IconFile}"/>
+		</Panel>
+		<Panel Background="#58606E" Width="1">
+		</Panel>
+		<Panel Margin="4">
+			<ToggleControl ux:Name="iem" />
+			<LabelText Value="{Property _panel.Label}" Alignment="VerticalCenter" Margin="12,0,0,4" />
+			<Clicked>
+				<Toggle Target="iem" />
+			</Clicked>
+		</Panel>
+		<Panel Margin="4" Padding="4,0,12,0" Alignment="Right">			
+				<WhileTrue Value="{Property _panel.IsSwitch}">
+					<MySwitch Alignment="VerticalCenter" HitTestMode="LocalVisualAndChildren" AccentColor="{Resource PrimeColor}" ux:Name="ms">
+						<WhileTrue Value="{Property ms.Value}">
+							<DebugAction Message="Clicked to true" />
+						</WhileTrue>
+					</MySwitch>
+				</WhileTrue>
+				<WhileFalse Value="{Property _panel.IsSwitch}">
+					<WhileTrue Value="{Property iem.Value}">
+						<TextInput ux:Name="txtEmail" FontSize="12" Alignment="VerticalCenter" TextAlignment="Center" Value="{Property _panel.FieldValue}" Height="24" Width="150" TextColor="{Resource PrimeColor}">
+					        <Rectangle Layer="Background" Color="#282F3B">
+					            <Stroke Width="2" Brush="#BBB" />
+					        </Rectangle>
+		    			</TextInput>	
+					</WhileTrue>
+					<WhileFalse Value="{Property iem.Value}">
+							<SmallValueText TextAlignment="Right" Alignment="VerticalCenter" Value="{Property _panel.FieldValue}" TextWrapping="Wrap"/>
+					</WhileFalse>
+				</WhileFalse>			
+		</Panel>
+	</Grid>
+</Panel>

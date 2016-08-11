@@ -1,0 +1,33 @@
+<Panel ux:Class="ntf.TextBox" FontSize="18" IsPassword="false">
+	<Rectangle CornerRadius="4" Color="#444" Layer="Background">
+		<Stroke Width="2" Color="#09b" />
+	</Rectangle>
+	<bool ux:Property="IsPassword" />
+	<string ux:Property="PlaceholderText"/>
+	<string ux:Property="Value" />
+	<float ux:Property="FontSize" />
+	<FileSource ux:Property="Icon" />
+	
+	<JavaScript>
+		var o = require('FuseJS/Observable');
+		var isVisible = o(this.IsPassword.value);	
+		module.exports = {
+			isVisible: isVisible,
+			toggleIsVisible: function(){
+				isVisible.value = !isVisible.value;
+			}
+		}
+	</JavaScript>
+	<Grid Columns="auto,1*,auto">
+		<Image File="{Property Icon}" Height="18" Margin="4"/>
+		<TextInput Value="{Property this.Value}" Height="48" FontSize="{Property this.FontSize}" TextColor="#ccc" CaretColor="#ccc" IsPassword="{isVisible}" ux:Name="tb" PlaceholderText="{Property this.PlaceholderText}" PlaceholderColor="#09b" Margin="4"/>
+		<WhileTrue Value="{Property this.IsPassword}">
+			<WhileTrue Value="{isVisible}">
+				<Image File="eye.png" Height="18" Clicked="{toggleIsVisible}" Margin="2,0,8,0"/>
+			</WhileTrue>
+			<WhileFalse Value="{isVisible}">
+				<Image File="invisible.png" Height="18" Clicked="{toggleIsVisible}" Margin="2,0,8,0"/>
+			</WhileFalse>
+		</WhileTrue>
+	</Grid>
+</Panel>

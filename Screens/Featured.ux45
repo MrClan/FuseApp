@@ -1,0 +1,109 @@
+<Page ux:Class="Featured">
+	<Router ux:Dependency="router"/>
+	<EdgeNavigator ux:Name="EdgeNavigator">
+		<!-- Add a panel to the left edge -->
+		<Sidebar Width="180" ux:Name="menu" EdgeNavigation.Edge="Left" router="router" translation="mainAppTranslation" />
+		<ClientPanel Color="#8FE0DC">
+			<JavaScript>
+			module.exports = {
+				go: function(){
+					debugger;
+					router.push("profile");
+				}
+			}
+			</JavaScript>
+
+			<FileImageSource File="../Assets/Images/1.jpg" ux:Key="food1"/>
+			<FileImageSource File="../Assets/Images/2.jpg" ux:Key="food2"/>
+			<FileImageSource File="../Assets/Images/3.jpg" ux:Key="food3"/>
+			<FileImageSource File="../Assets/Images/4.jpg" ux:Key="food4"/>
+			<FileImageSource File="../Assets/Images/5.jpg" ux:Key="food5"/>
+			<FileImageSource File="../Assets/Images/6.jpg" ux:Key="food6"/>
+			<FileImageSource File="../Assets/Images/7.jpg" ux:Key="food7"/>
+
+			<Font File="../Assets/Fonts/Lora-Regular.ttf" ux:Global="Lora" />
+			<Font File="../Assets/Fonts/Lora-Bold.ttf" ux:Global="LoraBold" />
+
+			<Translation ux:Name="mainAppTranslation" />
+			<iOS.StatusBarConfig Style="Light" />
+			<Panel>
+				<HeaderBar router="router" sidebar="menu" edgeNav="EdgeNavigator" translation="mainAppTranslation" titleText="FEATURED"/>
+				<ScrollView>
+					<StackPanel>
+						<Panel Height="1000">
+							<Panel Offset="0,-250">
+								<JavaScript File="../Modules/FeaturedData.js"/>
+								<Panel HitTestMode="LocalBoundsAndChildren" MaxHeight="1000000" >
+									<LinearNavigation ux:Name="nav" Easing="CircularOut"/>
+									<SwipeNavigate SwipeDirection="Left"/>
+									<Each Items="{items}">
+										<Panel ux:Name="self">
+											<Card PanelColor="#282F3B" Offset="0,-60">
+												<Clicked>
+													<NavigateTo Target="self" />
+												</Clicked>
+											</Card>
+											<StackPanel>
+												<Panel Height="620" />
+												<Panel ux:Name="textPanel" Opacity="0">
+													<StackPanel Width="300">
+														<Text Font="Lora" TextAlignment="Center" Value="{category}" FontSize="12"/>
+														<Text Font="Lora" TextAlignment="Center" Value="{name}" FontSize="25" TextWrapping="Wrap" Margin="50,5,50,0"/>
+														<Rectangle Fill="#282F3B" Height="4" Width="50" Margin="0,10"/>
+														<Text Font="Lora" TextAlignment="Left" Value="{text}" TextWrapping="Wrap" Margin="10,20"
+															FontSize="14" TextColor="#888" LineSpacing="3"/>
+														</StackPanel>
+														<ActivatingAnimation>
+															<Change textPanel.Opacity="1" Duration="0.5"/>
+														</ActivatingAnimation>
+														<EnteringAnimation Scale="1.2">
+															<Move RelativeTo="Size" Y="1" X="-1" Duration="0.5"/>
+														</EnteringAnimation>
+														<ExitingAnimation Scale="1.2">
+															<Move RelativeTo="Size" Y="1" X="1" Duration="0.5"/>
+														</ExitingAnimation>
+													</Panel>
+												</StackPanel>
+											</Panel>
+										</Each>
+									</Panel>
+
+									<Panel>
+										<Panel Alignment="Center" Width="0" Height="0" Offset="0,255">
+											<Grid Columns="150,150,150,150,150,150" Rows="150,150,150,150,150,150" Alignment="Center" TransformOrigin="TopLeft">
+												<Rotation Degrees="45" />
+
+												<Panel Color="#fff" Column="2" Row="2" ColumnSpan="3" RowSpan="3">
+												</Panel>
+
+												<Rectangle Row="1" Column="3" Color="#000" Margin="-2" HitTestMode="LocalBoundsAndChildren">
+													<Image File="../Assets/Icons/arrow.png" Width="30" Height="30" Alignment="BottomLeft" Margin="12">
+														<Rotation Degrees="-45"/>
+													</Image>
+
+												</Rectangle>
+												<Rectangle Row="3" Column="1" Color="#000" Margin="-2">
+													<Image File="../Assets/Icons/arrow.png" Width="30" Height="30" Alignment="TopRight" Margin="12">
+														<Rotation Degrees="135"/>
+													</Image>
+												</Rectangle>
+
+												<Rectangle Row="1" Column="1" ColumnSpan="2" RowSpan="2" Width="300" Height="300">
+													<Stroke Width="2" Brush="#fff9" />
+												</Rectangle>
+
+
+												<Rectangle Row="0" Column="2" RowSpan="2" Color="#fff6"/>
+												<Rectangle Row="2" Column="0" ColumnSpan="2" Color="#fff6"/>
+											</Grid>
+										</Panel>
+									</Panel>
+								</Panel>
+								<Rectangle Height="40%" Alignment="Bottom" Color="#fff" />
+							</Panel>
+						</StackPanel>
+					</ScrollView>
+				</Panel>
+			</ClientPanel>
+		</EdgeNavigator>
+	</Page>

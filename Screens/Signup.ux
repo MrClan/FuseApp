@@ -1,0 +1,21 @@
+<DockPanel ux:Class="Signup" Color="Teal">
+	<Router ux:Dependency="router" />
+	<JavaScript File="../Modules/Signup.js" />
+	<Video Layer="Background" File="../Assets/Videos/nature.mp4" IsLooping="true" AutoPlay="true" StretchMode="UniformToFill" Opacity="0.5">            
+	</Video>
+	<BottomFrameBackground Dock="Bottom"/>      
+	<TopFrameBackground Dock="Top" />
+	<ScrollView Dock="Fill">
+		<WrapPanel Dock="Fill" Alignment="Center" Orientation="Vertical">
+			<Huge Dock="Fill"  Value="Signup"/>
+			<ntf.UserHeader Margin="0" Dock="Top" Image="{imagePath}"></ntf.UserHeader>			
+			<Msg TextAlignment="Left" Value="{txtMsgs}" TextWrapping="Wrap" Margin="10,20"
+			 TextColor="#fff" LineSpacing="3" MaxWidth="150"/>
+			<ntf.TextBox PlaceholderText="username" Icon="../Assets/User.png" Value="{txtUser}"/>
+			<ntf.TextBox IsPassword="true" PlaceholderText="password" Icon="../Assets/time.png"  Value="{txtPswd}"/>
+			<ntf.TextBox IsPassword="true" PlaceholderText="retype password" Icon="../Assets/time.png"  Value="{txtConPswd}"/>			
+			<ntf.Button Text="Signup" Height="48" Clicked="{submitClicked}"/>
+			<ntf.Button Text="Back To Login" Height="48" Clicked="{gotoLogin}"/>
+		</WrapPanel>
+	</ScrollView>
+</DockPanel>

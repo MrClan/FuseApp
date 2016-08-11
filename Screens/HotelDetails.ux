@@ -1,0 +1,48 @@
+<Page ux:Class="HotelDetails" Clicked="{stopFromNavigating}" HitTestMode="LocalBoundsAndChildren">
+	<Router ux:Dependency="router" />
+	<JavaScript File="HotelDetails.js" />
+	<EdgeNavigator ux:Name="EdgeNavigator">
+		<!-- Add a panel to the left edge -->
+		<Sidebar Width="180" ux:Name="menu" EdgeNavigation.Edge="Left" router="router" />
+		<ScrollView>
+			<StackPanel ItemSpacing="24" Padding="12">
+				<ntf.TextBold Value="{hotel.name}" />
+				<Image Url="{hotel.imgUrl}" StretchMode="UniformToFill" Height="204"/>
+				<Grid Columns="auto,1*">
+					<WhileTrue Value="{myRatingLoaded}">
+						<ntf.TextHighlight Value="My Rating:" Margin="12"/>				
+						<WrapPanel Orientation="Horizontal">
+							<ntf.TextHighlightValue Value="-" Margin="12" Clicked="{downRating}"/>
+							<ntf.TextHighlightValue Value="{curRating}" Margin="12"/>
+							<ntf.TextHighlightValue Value="+" Margin="12" Clicked="{upRating}"/>
+							<ntf.Checkmark Margin="12" Clicked="{updateRating}" Color="{Resource TextValueColor}"/>				
+						</WrapPanel>				
+					</WhileTrue>
+					<ntf.TextHighlight Value="Likeability Score:" Margin="12"/>
+					<ntf.TextHighlightValue Value="{hotel.rating}" Margin="12"/>
+					<ntf.TextHighlight Value="Reviews" Margin="12"/>
+					<ntf.TextHighlightValue Value="{hotel.reviews}" Margin="12"/>				
+					<ntf.TextHighlight Value="Price Range(NRs): " Margin="12"/>
+					<WrapPanel Orientation="Horizontal">
+						<ntf.TextHighlightValue Value="{hotel.minPrice}" Margin="12"/>
+						<ntf.TextHighlightValue Value=" - " Margin="12"/>
+						<ntf.TextHighlightValue Value="{hotel.maxPrice}" Margin="12"/>
+					</WrapPanel>
+					<ntf.TextHighlight Value="City" Margin="12"/>
+					<WrapPanel>
+						<ntf.TextValue Value="{hotel.city}" Margin="12" />
+						<ntf.TextValue Value="{hotel.location}" Margin="12"/>
+					</WrapPanel>
+					<ntf.TextHighlight Value="Food: " Margin="12"/>
+					<ntf.TextHighlightValue Value="{hotel.food}" Margin="12"/>
+					<ntf.TextHighlight Value="Website: " Margin="12"/>
+					<ntf.TextHighlightValue Value="{hotel.url}" Margin="12"/>				                    
+				</Grid>
+				<WrapPanel Orientation="Horizontal" Alignment="Center">
+					<Basic.Button Text="Book/Reserve"/>
+					<Basic.Button Text="Go Back" Clicked="{goBack}"/>
+				</WrapPanel>
+			</StackPanel>
+		</ScrollView>
+	</EdgeNavigator>
+</Page>

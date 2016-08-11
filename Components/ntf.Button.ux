@@ -1,0 +1,41 @@
+<Panel ux:Class="apple">
+<Button ux:Class="ntf.Button" Margin="2" OnPressColor="#F92672" BgColor="#F56856" TextColor="#fff" ux:Name="b">
+	<float4 ux:Property="BgColor" />
+	<float4 ux:Property="TextColor" />
+	<float4 ux:Property="OnPressColor" />
+	<Panel ux:Template="GraphicsAppearance" HitTestMode="LocalBounds">
+		<Text ux:Name="Button_Text" Value="{Property b.Text}" TextColor="{Property b.TextColor}" Alignment="Center" TextAlignment="Center" Margin="10" />
+		<Rectangle CornerRadius="12" Layer="Background" Color="{Property b.BgColor}" ux:Name="rect"/>
+		<WhilePressed>
+			<Change Target="rect.Color" Value="{Property b.OnPressColor}"/>
+		</WhilePressed>
+	</Panel>
+</Button>
+
+<Panel ux:Class="ntf.UnderlinedText" TextColor="#ddd" HitTestMode="LocalBoundsAndChildren">
+	<float4 ux:Property="TextColor" />
+	<string ux:Property="Text" />
+	<WrapPanel Orientation="Vertical">
+		<Text Value="{Property Text}" Color="{Property TextColor}" />
+		<Rectangle Height="2" Color="{Property TextColor}" />			
+	</WrapPanel>
+</Panel>
+
+<TextInput ux:Class="TI" HitTestMode="LocalBoundsAndChildren" Height="50" FontSize="16" PlaceholderText="...">
+        <Clicked>
+            <GiveFocus Target="this" />
+        </Clicked>
+        <WhileFocused>
+            <Rectangle Dock="Bottom" Fill="#5184e5" Height="2" />
+        </WhileFocused>
+        <WhileNotFocused>
+            <Rectangle Dock="Bottom" Fill="#ddd" Height="2" />
+        </WhileNotFocused>
+</TextInput>
+
+<TextView ux:Class="TextViewer" TextWrapping="Wrap" Padding="4" Margin="4" CaretColor="#000" TextColor="#ccc" >Lorem ipsum dolor sit amet, 
+	<Rectangle Layer="Background" CornerRadius="4">
+		<Stroke Color="#000" />
+	</Rectangle>
+</TextView>
+</Panel>
