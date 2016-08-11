@@ -9,7 +9,7 @@
 				<ntf.TextBold Value="{hotel.name}" />
 				<Image Url="{hotel.imgUrl}" StretchMode="UniformToFill" Height="204"/>
 				<Grid Columns="auto,1*">
-					<WhileTrue Value="{myRatingLoaded}">
+					<WhileFalse Value="{myRatingLoaded}">
 						<ntf.TextHighlight Value="My Rating:" Margin="12"/>				
 						<WrapPanel Orientation="Horizontal">
 							<ntf.TextHighlightValue Value="-" Margin="12" Clicked="{downRating}"/>
@@ -17,7 +17,7 @@
 							<ntf.TextHighlightValue Value="+" Margin="12" Clicked="{upRating}"/>
 							<ntf.Checkmark Margin="12" Clicked="{updateRating}" Color="{Resource TextValueColor}"/>				
 						</WrapPanel>				
-					</WhileTrue>
+					</WhileFalse>
 					<ntf.TextHighlight Value="Likeability Score:" Margin="12"/>
 					<ntf.TextHighlightValue Value="{hotel.rating}" Margin="12"/>
 					<ntf.TextHighlight Value="Reviews" Margin="12"/>

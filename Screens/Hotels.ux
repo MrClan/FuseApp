@@ -26,7 +26,7 @@
 				</DockPanel>
 			</StackPanel>
 			<DockPanel Dock="Fill">
-				<WhileTrue Value="{isReady}">
+				<WhileFalse Value="{isLoading}">
 					<ScrollView Dock="Fill">
 						<StackPanel>						
 							<ntf.TextHighlightValue Margin="12" Value="{resultsCount}"/>
@@ -48,12 +48,12 @@
 							</StackPanel>
 						</StackPanel>
 					</ScrollView>				
-				</WhileTrue>
-				<WhileFalse Value="{isReady}">
+				</WhileFalse>
+				<WhileTrue Value="{isLoading}">
 					<Panel Alignment="VerticalCenter">
 						<ntf.TextHighlightValue TextAlignment="Center" Value="Refreshing data...please wait"/>
 					</Panel>
-				</WhileFalse>
+				</WhileTrue>
 			</DockPanel>
 		</DockPanel>
 	</EdgeNavigator>

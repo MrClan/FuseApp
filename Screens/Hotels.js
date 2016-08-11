@@ -1,28 +1,8 @@
 var o = require('FuseJS/Observable');
 var _ = require('../lib/lodash');
 var utils = require('../Modules/Utils.js');
+var hm = require('../Modules/HotelModule.js');
 var title = o('HOTELS PAGE');
-// fetch hotels from db
-var Syncano = require("syncano-js-1.0.23/dist/syncano.fuse.js");
-var apiKeys = require("../api-keys.js");
-var connection = Syncano({accountKey: apiKeys.accountKey});
-var DataObject = connection.DataObject;
-var fields = [
-"id",
-"name",
-"description",
-"rating",
-"minPrice",
-"maxPrice",
-"city",
-"img",
-"food",
-"url",
-"intro",
-"imgUrl",
-"reviews"
-];
-var pageSize = 24;
 var showFiltersUi = o(false);
 var spFiltersVisibility = o('Collapsed');
 var spContentVisibility = o('Visible');
@@ -33,78 +13,34 @@ var curPriceRange = o('Any');
 var curCuisine = o('Any');
 var hotelsList = o();
 var resultsCount = o(hotelsList.length + ' hotels');
-var isReady = o(true);
-var hasPrev = o(false);
-var hasNext = o(false);
-var searchResultsSyncanoObject = {};
 
-var getDataFromSyncano = function(filters, contentAlreadyInView){	
-	var query = {
-		instanceName: apiKeys.instanceName,
-		className: "hotels"
-	};
-	var filters = filters || {};
-	isReady.value = false;	
-	DataObject.please()
-	.list(query)
-	.filter(filters)
-	.fields(fields)
-	.orderBy("-rating")
-	.pageSize(pageSize)
-	.then(function(objects){		
-		updateView(objects, contentAlreadyInView);		
-	})
-	.catch(function(err){		
-		resultsCount.value = err + '';
-		hotelsList.clear();
-		isReady.value = true;
-	});
+var displayError = function(error){	
+	console.log( 'error callback')	;
+	resultsCount.value = error + ''; 
+	hotelsList.clear();
 }
 
-var getDataCountFromSyncano = function(filters){	
-	console.log( 'fetching count...');
-	var query = {
-		instanceName: apiKeys.instanceName,
-		className: "hotels"
-	};
-	var filters = filters || {};
-	DataObject.please()
-	.list(query)
-	.filter(filters)
-	.count()
-	.pageSize(0)
-	.then(function(objects){
-		console.log( 'fetch count complete');
-		resultsCount.value = objects["objects_count"] + ' matching hotels';
-	})
-	.catch(function(err){		
-		console.log( 'fetch count complete with errors');
-		console.log('error fetching count');
-	});
-}
-
-getDataFromSyncano(null, true); // Fetch initial data
-getDataCountFromSyncano(); // fetch initial data count
-
-var updateView = function(searchResults, contentAlreadyInView){
-	searchResultsSyncanoObject = searchResults;
-	hasPrev.value = searchResults.hasPrev();
-	hasNext.value = searchResults.hasNext();	
+var updateView = function(searchResults){
+	console.log( 'success callback');
 	hotelsList.clear();
 	searchResults.forEach(function(item){
-		hotelsList.add(_.pick(item,fields));
-	});	
-	isReady.value = true;
+		hotelsList.add(_.pick(item,hm.fields));
+	});
 	if(!contentAlreadyInView){
-		toggleView();
+		toggleView(); 
 	}
 }
 
+var updateCount = function(countInfo){
+	console.log( 'count update callback')
+	resultsCount.value = countInfo + ' matching hotels';
+}
 
 var toggleView = function(){	
 	spFiltersVisibility.value = spFiltersVisibility.value == 'Collapsed'? 'Visible':'Collapsed';
 	spContentVisibility.value = spContentVisibility.value == 'Collapsed'? 'Visible':'Collapsed';
 	btnText.value = btnText.value == 'Show Filters'? 'Hide Filters':'Show Filters';
+	contentAlreadyInView = !contentAlreadyInView;
 }
 
 var clearSearch = function(){
@@ -160,16 +96,22 @@ var searchHotels = function(){
 	{
 		filter["food"] ={"_icontains":curCuisine.value};
 	}
-
-	getDataFromSyncano(filter);
-	getDataCountFromSyncano(filter);
+	hm.getHotelList(filter, updateView, displayError, updateCount);
 }
+
+
+var contentAlreadyInView = true;
+hm.getHotelList({}, updateView, displayError, updateCount);
 
 
 module.exports = {
 	gotoProfile: function(){
-			router.push('profile');
-		},
+		router.push('profile');
+	},	
+	gotoHotelDetails: function(args){			
+		console.log('going to ' + args.data.id);
+		router.push('hotelDetails', args.data);
+	},
 	title: title,
 	hotelsList: hotelsList,
 	showFiltersUi: showFiltersUi,
@@ -185,43 +127,13 @@ module.exports = {
 	clearSearch: clearSearch,
 	utils: utils,
 	resultsCount: resultsCount,
-	isReady: isReady,
-	hasNext: hasNext,
-	hasPrev: hasPrev,
+	isLoading: hm.loading,
+	hasNext: hm.hasNextPage,
+	hasPrev: hm.hasPrevPage,
 	gotoNext: function(){
-		if(hasNext.value === true){
-			isReady.value = false;
-			if(searchResultsSyncanoObject){
-				searchResultsSyncanoObject.next()
-				.then(function(objects){
-					updateView(objects, true);
-				})				
-				.catch(function(err){
-					resultsCount.value = err + '';
-					hotelsList.clear();
-					isReady.value = true;
-				});
-			}
-		}
+		hm.gotoNext(updateView, displayError);
 	},
 	gotoPrev: function(){
-		if(hasPrev.value === true){
-			isReady.value = false;			
-			if(searchResultsSyncanoObject){
-				searchResultsSyncanoObject.prev()
-				.then(function(objects){
-					updateView(objects, true);
-				})				
-				.catch(function(err){
-					resultsCount.value = err + '';
-					hotelsList.clear();
-					isReady.value = true;
-				});;
-			}
-		}
-	},
-	gotoHotelDetails: function(args){			
-			console.log('going to ' + args.data.id);
-			router.push('hotelDetails', args.data);
-		}
+		hm.gotoPrev(updateView, displayError);
+	}
 }
